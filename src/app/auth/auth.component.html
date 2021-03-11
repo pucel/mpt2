@@ -1,0 +1,29 @@
+<div *ngIf="isLoading"></div>
+<!--spinner-->
+<form [formGroup]="authForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+
+  <div>
+    <label for="email">E-Mail</label>
+    <input type="email" id="email" formControlName="email" name="email" email />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" autocomplete="off" formControlName="password" />
+  </div>
+
+  <div *ngIf="!isAuthenticated">
+    <button type="submit" [disabled]="!authForm.valid">
+      Login
+    </button>
+    |
+    <button (click)="onSignup()" type="button">
+      Sign Up
+    </button>
+  </div>
+  <div *ngIf="isAuthenticated">
+    <button (click)="onLogOut()" type="button">
+      Logout
+    </button>
+    <hr>
+  </div>
+</form>
