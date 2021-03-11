@@ -1,0 +1,13 @@
+<p>create-worker works!</p>
+
+<form [formGroup]="newWorkerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">First Name</label>
+    <input type="text" id="firstName" class="form-control" formControlName="firstName">
+  </div>
+  <div class="form-group">
+    <label for="name">Last Name</label>
+    <input type="text" id="lastName" class="form-control" formControlName="lastName">
+  </div>
+  <button type="submit">Save</button>
+</form>

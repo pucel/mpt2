@@ -1,0 +1,19 @@
+<nav>
+  <div>
+    <div>
+      <ul>
+        <li routerLinkActive="active" *ngIf="isAuthenticated">
+          <a routerLink="/workers">Workers</a>
+        </li>
+        <li routerLinkActive="active" *ngIf="!isAuthenticated">
+          <a routerLink="/auth">Authenticate</a>
+        </li>
+      </ul>
+      <ul>
+        <li *ngIf="isAuthenticated">
+          <a (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
