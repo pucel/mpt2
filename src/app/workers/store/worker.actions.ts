@@ -7,6 +7,7 @@ export const ADD_WORKER = '[Workers] Add Worker';
 export const UPDATE_WORKER = '[Workers] Update Worker';
 export const GET_WORKER = '[Workers] Get Worker';
 export const CREATE_DOC = '[Workers] Create Doc';
+export const DELETE_WORKER = '[Workers] Delete Worker';
 
 export class FetchWorkers implements Action {
   readonly type = FETCH_WORKERS;
@@ -44,10 +45,18 @@ export class CreateDoc implements Action {
   constructor(public payload: string) { }
 }
 
+export class DeleteWorker implements Action {
+  readonly type = DELETE_WORKER;
+
+  constructor(public payload: string) { }
+}
+
+
 export type WorkerActions =
   | FetchWorkers
   | SetWorkers
   | AddWorker
   | UpdateWorker
   | GetWorker
-  | CreateDoc;
+  | CreateDoc
+  | DeleteWorker;

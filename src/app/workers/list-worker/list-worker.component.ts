@@ -24,6 +24,10 @@ export class ListWorkerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.start();
+  }
+
+  start() {
     this.store.dispatch(new WorkerActions.FetchWorkers());
 
     this.subscription = this.store.select('worker')
@@ -34,13 +38,13 @@ export class ListWorkerComponent implements OnInit, OnDestroy {
       .subscribe(
         (workers: Worker[]) => {
           this.workers = workers;
-          console.log(this.workers);
         }
       );
   }
 
-  onEditWorker(_id: string) {
-    this.id = this.route.snapshot.paramMap.get("_id");
+  onDelete(worker: Worker) {
+    this.store.dispatch(new WorkerActions.DeleteWorker(worker._id));
+    this.start();
   }
 
   ngOnDestroy() {

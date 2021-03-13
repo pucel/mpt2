@@ -43,7 +43,6 @@ export class WorkerEffects {
 
   @Effect({ dispatch: false })
   updatedWorker = this.actions$.pipe(ofType(WorkerActions.UPDATE_WORKER),
-
     switchMap((actionData) => {
       return this.http.post(
         'http://localhost:5000/update', actionData
@@ -54,13 +53,18 @@ export class WorkerEffects {
 
   @Effect({ dispatch: false })
   getWorker = this.actions$.pipe(ofType(WorkerActions.GET_WORKER),
-    //this.store.select('worker'),
-    //withLatestFrom(this.store.select('worker')),
-    //take(1),
     switchMap((actionData) => {
-      console.log(actionData);
       return this.http.put(
         'http://localhost:5000/getWorker', actionData
+      )
+    })
+  );
+
+  @Effect({ dispatch: false })
+  deleteWorker = this.actions$.pipe(ofType(WorkerActions.DELETE_WORKER),
+    switchMap((actionData) => {
+      return this.http.put(
+        'http://localhost:5000/deleteWorker', actionData
       )
     })
   );

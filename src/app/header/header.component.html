@@ -5,6 +5,9 @@
         <li routerLinkActive="active" *ngIf="isAuthenticated">
           <a routerLink="/workers">Workers</a>
         </li>
+        <li routerLinkActive="active" *ngIf="isAuthenticated">
+          <a routerLink="/documents">Documents</a>
+        </li>
         <li routerLinkActive="active" *ngIf="!isAuthenticated">
           <a routerLink="/auth">Authenticate</a>
         </li>

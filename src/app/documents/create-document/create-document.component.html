@@ -1,0 +1,17 @@
+<p>Create document works</p>
+
+<form [formGroup]="newDocumentForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" class="form-control" formControlName="name">
+  </div>
+  <div>
+    <label for="name">Description</label>
+    <input type="text" id="description" class="form-control" formControlName="description">
+  </div>
+  <div>
+    <label for="file">Choose File</label>
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+  </div>
+  <button type="submit">Save</button>
+</form>

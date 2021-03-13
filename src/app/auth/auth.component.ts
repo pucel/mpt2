@@ -63,7 +63,6 @@ export class AuthComponent implements OnInit, OnDestroy {
       }))
       .subscribe(user => {
         this.isAuthenticated = !!user;
-        console.log('isAuthenticated: ' + this.isAuthenticated);
       });
     // only for presenting who is logged in on FE
     this.user = localStorage.getItem('userData');

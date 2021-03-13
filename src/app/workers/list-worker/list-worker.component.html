@@ -1,7 +1,8 @@
 <p>list-worker works!</p>
+<button [routerLink]="['./', 'new']">New Worker</button>
+<h1>Marda je sikovnej</h1>
 
 <ul *ngFor="let worker of workers">
-  <li>{{worker.firstName}} <button [routerLink]="['./', worker._id, 'edit']">Edit</button> <button
-      [routerLink]="['./', worker._id, 'doc']">Create Contract</button> </li>
-
+  <li>{{worker.firstName}} {{worker.lastName}} <button [routerLink]="['./', worker._id, 'edit']">Edit</button> <button
+      [routerLink]="['./', worker._id, 'doc']">Create Contract</button><button (click)="onDelete(worker)">Delete</button> </li>
 </ul>
