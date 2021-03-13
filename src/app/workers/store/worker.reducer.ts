@@ -48,6 +48,10 @@ export function workerReducer(
       return {
         ...state
       };
+      // case WorkerActions.DELETE_WORKER:
+      // return {
+      //   ...state
+      // };
     case WorkerActions.CREATE_DOC:
       return {
         ...state

@@ -1,0 +1,9 @@
+<p>list-document works!</p>
+
+<button [routerLink]="['./', 'new']">New Document</button>
+
+<ul *ngFor="let document of documents">
+  <li>{{document.name}} {{document.description}} <button [routerLink]="['./', document._id, 'edit']">Edit</button>
+    <button (click)="onDelete(document)">Delete</button>
+  </li>
+</ul>

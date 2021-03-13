@@ -132,8 +132,6 @@ export class AuthEffects {
       } = JSON.parse(localStorage.getItem('userData'));
       if (!userData) {
         return { type: 'DUMMY' };
-      } else {
-        console.log('localstorage');
       }
 
       const loadedUser = new User(

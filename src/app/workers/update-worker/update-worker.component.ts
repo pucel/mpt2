@@ -21,7 +21,6 @@ export class UpdateWorkerComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState.AppState>, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(
       (params: Params) => {
         this.id = params['id'];
@@ -53,9 +52,7 @@ export class UpdateWorkerComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log('update');
     const newWorker = new Worker(this.id, this.updateWorkerForm.value['firstName'], this.updateWorkerForm.value['lastName']);
-
     this.store.dispatch(new WorkerActions.UpdateWorker(newWorker));
     this.router.navigate(['/workers']);
   }
