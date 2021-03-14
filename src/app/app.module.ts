@@ -13,11 +13,13 @@ import { StoreModule } from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { HeaderComponent } from './header/header.component';
+import { UploadFileStoreModule } from './upload-file/upload-file-store.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent
+
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { HeaderComponent } from './header/header.component';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([WorkerEffects, AuthEffects]),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    UploadFileStoreModule
   ],
   providers: [,],
   bootstrap: [AppComponent]
