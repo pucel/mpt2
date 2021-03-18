@@ -9,9 +9,9 @@ const appRoutes: Routes = [
       import("./workers/worker.module").then(m => m.WorkerModule)
   },
   {
-    path: "documents",
+    path: "templates",
     loadChildren: () =>
-      import("./documents/document.module").then(m => m.DocumentModule)
+      import("./templates/template.module").then(m => m.templateModule)
   },
   {
     path: "auth",

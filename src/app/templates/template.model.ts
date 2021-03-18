@@ -1,4 +1,4 @@
-export class Document {
+export class Template {
   public _id?: string;
   public name: string;
   public version: number;

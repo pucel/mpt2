@@ -8,23 +8,25 @@ import { environment } from 'src/environments/environment';
 })
 export class FileUploadService {
   private API_BASE_URL = environment.apiBaseUrl;
+  fileName: string;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   public uploadFile(file: File): Observable<HttpEvent<{}>> {
     const formData = new FormData();
-    formData.append('files', file, file.name);
-
+    formData.append('files', file, file.name)
+    this.fileName = file.name;
     const options = {
-      reportProgress: true
+      reportProgress: true,
     };
 
     const req = new HttpRequest(
       'POST',
-      `${this.API_BASE_URL}/api/file`,
+      `${this.API_BASE_URL}/uploadfile`,
       formData,
       options
     );
     return this.httpClient.request(req);
   }
 }
+//https://dev.to/angular/managing-file-uploads-with-ngrx-39ha

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, concatMap, map, takeUntil } from 'rxjs/operators';
+import { catchError, concatMap, map, takeUntil, tap } from 'rxjs/operators';
 import { serializeError } from 'serialize-error';
 import { FileUploadService } from 'src/app/_services';
 import * as fromFileUploadActions from './actions';
@@ -42,9 +42,19 @@ export class UploadFileEffects {
         });
       }
       case HttpEventType.ResponseHeader:
+        {
+          if (event.status === 200) {
+            const id = null;
+            return new fromFileUploadActions.UploadCompletedAction(id);
+          } else {
+            return new fromFileUploadActions.UploadFailureAction({
+              error: event.statusText
+            });
+          }
+        }
       case HttpEventType.Response: {
         if (event.status === 200) {
-          return new fromFileUploadActions.UploadCompletedAction();
+          return new fromFileUploadActions.UploadCompletedAction(event.body._id);
         } else {
           return new fromFileUploadActions.UploadFailureAction({
             error: event.statusText
