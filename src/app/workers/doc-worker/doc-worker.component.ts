@@ -8,6 +8,7 @@ import { first, map } from 'rxjs/operators';
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
 import { Worker } from '../worker.model';
+import { Template } from '../../templates/template.model';
 
 @Component({
   selector: 'app-doc-worker',
@@ -17,9 +18,12 @@ import { Worker } from '../worker.model';
 export class DocWorkerComponent implements OnInit, OnDestroy {
   id: string;
   storeSub: Subscription;
+  docSub: Subscription;
   updateWorkerForm: FormGroup;
   public workerNow: Worker;
   public workerId: string;
+  templates: Template[];
+
   constructor(private store: Store<AppState.AppState>, private route: ActivatedRoute, private router: Router, private http: HttpClient,) { }
 
   ngOnInit(): void {
@@ -32,6 +36,13 @@ export class DocWorkerComponent implements OnInit, OnDestroy {
         this.initForm();
       }
     );
+    this.docSub = this.store.select('template').pipe(
+      map(templateState => {
+        return templateState.templates
+      })).subscribe(templates => {
+        this.templates = templates;
+      })
+
   }
 
   initForm() {
@@ -49,8 +60,8 @@ export class DocWorkerComponent implements OnInit, OnDestroy {
 
   }
 
-  onSubmit() {
-    this.store.dispatch(new WorkerActions.CreateDoc(this.workerId));
+  onSubmit(template: Template) {
+    this.store.dispatch(new WorkerActions.CreateDoc({ workerId: this.workerId, templateId: template._id }));
   }
 
   ngOnDestroy() {

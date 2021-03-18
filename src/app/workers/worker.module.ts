@@ -7,9 +7,7 @@ import { ListWorkerComponent } from './list-worker/list-worker.component';
 import { WorkerRoutingModule } from './worker-routing.module';
 import { CommonModule } from "@angular/common";
 import { DocWorkerComponent } from './doc-worker/doc-worker.component';
-
-
-
+import { DocumentModule } from '../documents/document.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +15,8 @@ import { DocWorkerComponent } from './doc-worker/doc-worker.component';
     UpdateWorkerComponent,
     ListWorkerComponent,
     DocWorkerComponent
+
   ],
-  imports: [RouterModule, ReactiveFormsModule, WorkerRoutingModule, CommonModule]
+  imports: [RouterModule, ReactiveFormsModule, WorkerRoutingModule, CommonModule, DocumentModule]
 })
 export class WorkerModule { }

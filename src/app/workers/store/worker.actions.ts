@@ -8,6 +8,8 @@ export const UPDATE_WORKER = '[Workers] Update Worker';
 export const GET_WORKER = '[Workers] Get Worker';
 export const CREATE_DOC = '[Workers] Create Doc';
 export const DELETE_WORKER = '[Workers] Delete Worker';
+export const SET_CURRENT_WORKER = '[Workers] Set Current Worker';
+
 
 export class FetchWorkers implements Action {
   readonly type = FETCH_WORKERS;
@@ -42,7 +44,7 @@ export class GetWorker implements Action {
 export class CreateDoc implements Action {
   readonly type = CREATE_DOC;
 
-  constructor(public payload: string) { }
+  constructor(public payload: { workerId: string, templateId: string }) { }
 }
 
 export class DeleteWorker implements Action {
@@ -51,6 +53,11 @@ export class DeleteWorker implements Action {
   constructor(public payload: string) { }
 }
 
+export class SetCurrentWorker implements Action {
+  readonly type = SET_CURRENT_WORKER;
+
+  constructor(public payload: Worker) { }
+}
 
 export type WorkerActions =
   | FetchWorkers
@@ -59,4 +66,5 @@ export type WorkerActions =
   | UpdateWorker
   | GetWorker
   | CreateDoc
-  | DeleteWorker;
+  | DeleteWorker
+  | SetCurrentWorker;

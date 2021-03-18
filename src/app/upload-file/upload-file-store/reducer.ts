@@ -8,7 +8,8 @@ export function featureReducer(state = initialState, action: Actions): State {
         ...state,
         status: UploadStatus.Requested,
         progress: null,
-        error: null
+        error: null,
+        id: null
       };
     }
     case ActionTypes.UPLOAD_CANCEL: {
@@ -24,7 +25,8 @@ export function featureReducer(state = initialState, action: Actions): State {
         ...state,
         status: UploadStatus.Ready,
         progress: null,
-        error: null
+        error: null,
+        id: null
       };
     }
     case ActionTypes.UPLOAD_FAILURE: {
@@ -32,14 +34,16 @@ export function featureReducer(state = initialState, action: Actions): State {
         ...state,
         status: UploadStatus.Failed,
         error: action.payload.error,
-        progress: null
+        progress: null,
+        id: null
       };
     }
     case ActionTypes.UPLOAD_STARTED: {
       return {
         ...state,
         status: UploadStatus.Started,
-        progress: 0
+        progress: 0,
+        id: null
       };
     }
     case ActionTypes.UPLOAD_PROGRESS: {
@@ -53,7 +57,8 @@ export function featureReducer(state = initialState, action: Actions): State {
         ...state,
         status: UploadStatus.Completed,
         progress: 100,
-        error: null
+        error: null,
+        id: action.payload
       };
     }
     default: {

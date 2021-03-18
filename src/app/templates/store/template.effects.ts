@@ -2,38 +2,38 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
-import * as DocumentActions from './document.actions';
+import * as TemplateActions from './template.actions';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { CreatedDocument } from '../createdDocument.model';
+import { Template } from '../template.model';
 
 @Injectable()
-export class DocumentEffects {
+export class TemplateEffects {
   constructor(private http: HttpClient, private actions$: Actions, private store: Store<fromApp.AppState>) { }
 
   @Effect()
-  fetchDocuments = this.actions$.pipe(
-    ofType(DocumentActions.FETCH_DOCUMENTS),
-    switchMap((actionData) => {
+  fetchTemplates = this.actions$.pipe(
+    ofType(TemplateActions.FETCH_TEMPLATES),
+    switchMap(() => {
       return this.http
-        .post<CreatedDocument[]>(
-          'http://localhost:5000/getdocuments', actionData
+        .get<Template[]>(
+          'http://localhost:5000/gettemplates'
         );
     }),
-    map(documents => {
-      return documents.map(document => {
+    map(templates => {
+      return templates.map(template => {
         return {
-          ...document,
+          ...template,
         };
       });
     }),
-    map(documents => {
-      return new DocumentActions.SetDocuments(documents);
+    map(templates => {
+      return new TemplateActions.SetTemplates(templates);
     })
   )
 
   @Effect({ dispatch: false })
-  addDocument = this.actions$.pipe(ofType(DocumentActions.ADD_DOCUMENT),
+  addtemplate = this.actions$.pipe(ofType(TemplateActions.ADD_TEMPLATE),
     switchMap((actionData) => {
       console.log('effect');
       console.log(actionData);

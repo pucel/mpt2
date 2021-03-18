@@ -12,7 +12,7 @@ export enum ActionTypes {
 
 export class UploadRequestAction implements Action {
   readonly type = ActionTypes.UPLOAD_REQUEST;
-  constructor(public payload: { file: File }) {}
+  constructor(public payload: { file: File }) { }
 }
 
 export class UploadCancelAction implements Action {
@@ -29,16 +29,17 @@ export class UploadStartedAction implements Action {
 
 export class UploadProgressAction implements Action {
   readonly type = ActionTypes.UPLOAD_PROGRESS;
-  constructor(public payload: { progress: number }) {}
+  constructor(public payload: { progress: number }) { }
 }
 
 export class UploadFailureAction implements Action {
   readonly type = ActionTypes.UPLOAD_FAILURE;
-  constructor(public payload: { error: string }) {}
+  constructor(public payload: { error: string }) { }
 }
 
 export class UploadCompletedAction implements Action {
   readonly type = ActionTypes.UPLOAD_COMPLETED;
+  constructor(public payload: string) { }
 }
 
 export type Actions =

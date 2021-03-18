@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import * as WorkerActions from './worker.actions';
-import { map, switchMap, withLatestFrom, take } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Worker } from '../worker.model';
 
@@ -29,6 +29,21 @@ export class WorkerEffects {
     }),
     map(workers => {
       return new WorkerActions.SetWorkers(workers);
+    })
+  )
+
+  @Effect({ dispatch: false })
+  createDoc = this.actions$.pipe(ofType(WorkerActions.CREATE_DOC),
+    switchMap((actionData) => {
+      return this.http.put<Blob>(
+        'http://localhost:5000/createDoc', actionData, { responseType: 'blob' as 'json' }
+      );
+    }),
+    map(downloadedDoc => {
+      const blob = new Blob([downloadedDoc], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+
     })
   )
 
@@ -69,13 +84,6 @@ export class WorkerEffects {
     })
   );
 
-  @Effect({ dispatch: false })
-  createDoc = this.actions$.pipe(ofType(WorkerActions.CREATE_DOC),
-    switchMap((actionData) => {
-      return this.http.post(
-        'http://localhost:5000/createDoc', actionData
-      )
-    })
-  );
+
 
 }

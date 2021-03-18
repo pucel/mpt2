@@ -7,14 +7,14 @@ import { UploadFileStoreModule } from '../upload-file/upload-file-store.module';
 import { CreateDocumentComponent } from './create-document/create-document.component'
 import { DocumentRoutingModule } from './document-routing.module';
 import { ListDocumentComponent } from './list-document/list-document.component';
-import { UpdateDocumentComponent } from './update-document/update-document.component';
+
 
 @NgModule({
   declarations: [
     CreateDocumentComponent,
-    ListDocumentComponent,
-    UpdateDocumentComponent
+    ListDocumentComponent
   ],
-  imports: [RouterModule, ReactiveFormsModule, DocumentRoutingModule, CommonModule, UploadFileStoreModule]
+  imports: [RouterModule, ReactiveFormsModule, DocumentRoutingModule, CommonModule, UploadFileStoreModule],
+  exports: [ListDocumentComponent]
 })
 export class DocumentModule { }

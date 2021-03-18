@@ -1,0 +1,9 @@
+<p>list-template works!</p>
+
+<button [routerLink]="['./', 'new']">New template</button>
+
+<ul *ngFor="let template of templates">
+  <li>{{template.name}} {{template.description}} <button [routerLink]="['./', template._id, 'edit']">Edit</button>
+    <button (click)="onDelete(template)">Delete</button>
+  </li>
+</ul>

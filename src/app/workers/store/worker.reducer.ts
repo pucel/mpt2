@@ -3,12 +3,14 @@ import * as WorkerActions from './worker.actions';
 
 export interface State {
   workers: Worker[];
+  currentWorker: Worker;
 }
 
 const initialState: State = {
   workers: [
     new Worker("60469bd3327f0dd8c219231a", "Šimon", "Pučelík")
-  ]
+  ],
+  currentWorker: null
 }
 
 
@@ -48,13 +50,18 @@ export function workerReducer(
       return {
         ...state
       };
-      // case WorkerActions.DELETE_WORKER:
-      // return {
-      //   ...state
-      // };
+    // case WorkerActions.DELETE_WORKER:
+    // return {
+    //   ...state
+    // };
     case WorkerActions.CREATE_DOC:
       return {
         ...state
+      };
+    case WorkerActions.SET_CURRENT_WORKER:
+      return {
+        ...state,
+        currentWorker: action.payload
       };
     default:
       return state;

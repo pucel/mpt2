@@ -1,15 +1,13 @@
-import { Document } from '../document.model';
+import { CreatedDocument } from '../createdDocument.model';
 import * as DocumentActions from './document.actions';
 
 
 export interface State {
-  documents: Document[];
+  documents: CreatedDocument[];
 }
 
 const initialState: State = {
-  documents: [
-    new Document("35", "Contract", 1, "Popis")
-  ]
+  documents: []
 }
 
 
@@ -23,12 +21,17 @@ export function documentReducer(
         ...state,
         initialState
       };
-
+    case DocumentActions.SET_DOCUMENTS:
+      return {
+        ...state,
+        documents: [...action.payload]
+      };
+    case DocumentActions.ADD_DOCUMENT:
+      return {
+        ...state,
+        documents: [...state.documents, action.payload]
+      };
     default:
       return state;
   }
-
-
 }
-
-

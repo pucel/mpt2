@@ -2,4 +2,8 @@
 
 
 {{ workerNow.firstName}} {{workerNow.lastName}}
-<button (click)="onSubmit()" type="submit">Create doc</button>
+
+
+<div *ngFor="let template of templates">
+  {{template.name}} {{template.version}} {{template.description}} <button (click)="onSubmit(template)">Create</button>
+</div>
