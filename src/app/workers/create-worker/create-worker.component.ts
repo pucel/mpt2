@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
 import { Worker } from '../worker.model';
@@ -14,7 +15,7 @@ import { Worker } from '../worker.model';
 export class CreateWorkerComponent implements OnInit {
   newWorkerForm: FormGroup;
 
-  constructor(private store: Store<AppState.AppState>, private route: ActivatedRoute, private router: Router) { }
+  constructor(private store: Store<AppState.AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();

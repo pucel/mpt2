@@ -1,5 +1,6 @@
 <p>list-document works!</p>
 
-<ul *ngFor="let document of this.documents">
-  <li>{{document.fileName}}</li>
+<h3 *ngIf="store$ | async"> {{worker.firstName}} </h3>
+<ul *ngFor="let document of documents$ | async">
+  <li>{{document.filename}}</li>
 </ul>

@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { Observable, } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
 import { Worker } from '../worker.model';
@@ -13,51 +13,40 @@ import { Worker } from '../worker.model';
   templateUrl: './update-worker.component.html',
   styleUrls: ['./update-worker.component.scss']
 })
-export class UpdateWorkerComponent implements OnInit, OnDestroy {
-  id: string;
-  updateWorkerForm: FormGroup;
-  private storeSub: Subscription;
+export class UpdateWorkerComponent implements OnInit {
 
-  constructor(private store: Store<AppState.AppState>, private route: ActivatedRoute, private router: Router) { }
+  updateWorkerForm: FormGroup;
+
+  store$: Observable<boolean>;
+  worker: Worker;
+
+  constructor(private store: Store<AppState.AppState>) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = params['id'];
-        this.store.dispatch(new WorkerActions.GetWorker(this.id));
-        this.initForm();
-      }
+
+    //Get the current worker from store
+    this.store$ = this.store.select('worker').pipe(
+      map(workerState => {
+        console.log('Jsem tu');
+        this.worker = workerState.currentWorker;
+        console.log(this.worker);
+        return true;
+      }),
+      tap(() => {
+        this.initForm()
+      })
     );
   }
 
   initForm() {
-    let firstName = "";
-    let lastName = "";
-
-    this.storeSub = this.store.select('worker').pipe(
-      map(workerState => {
-        return workerState.workers.find((worker, _id) => {
-          return worker._id === this.id;
-        });
-      })).subscribe(worker => {
-        firstName = worker.firstName;
-        lastName = worker.lastName;
-      })
-
-
     this.updateWorkerForm = new FormGroup({
-      'firstName': new FormControl(firstName, Validators.required),
-      'lastName': new FormControl(lastName, Validators.required),
+      'firstName': new FormControl(this.worker.firstName, Validators.required),
+      'lastName': new FormControl(this.worker.lastName, Validators.required),
     });
   }
 
   onSubmit() {
-    const newWorker = new Worker(this.id, this.updateWorkerForm.value['firstName'], this.updateWorkerForm.value['lastName']);
+    const newWorker = new Worker(this.worker._id, this.updateWorkerForm.value['firstName'], this.updateWorkerForm.value['lastName']);
     this.store.dispatch(new WorkerActions.UpdateWorker(newWorker));
-    this.router.navigate(['/workers']);
-  }
-
-  ngOnDestroy() {
-    this.storeSub.unsubscribe();
   }
 }
