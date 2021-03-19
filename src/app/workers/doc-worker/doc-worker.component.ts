@@ -1,12 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
+import * as TemplateActions from '../../templates/store/template.actions';
 import { Worker } from '../worker.model';
 import { Template } from '../../templates/template.model';
 
@@ -15,57 +14,43 @@ import { Template } from '../../templates/template.model';
   templateUrl: './doc-worker.component.html',
   styleUrls: ['./doc-worker.component.scss']
 })
-export class DocWorkerComponent implements OnInit, OnDestroy {
-  id: string;
-  storeSub: Subscription;
-  docSub: Subscription;
-  updateWorkerForm: FormGroup;
-  public workerNow: Worker;
-  public workerId: string;
-  templates: Template[];
+export class DocWorkerComponent implements OnInit {
 
-  constructor(private store: Store<AppState.AppState>, private route: ActivatedRoute, private router: Router, private http: HttpClient,) { }
+  templates$: Observable<Template[]>;
+  store$: Observable<boolean>;
+
+  worker: Worker;
+
+  constructor(private store: Store<AppState.AppState>) { }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = params['id'];
-
-        this.store.dispatch(new WorkerActions.GetWorker(this.id));
+    //Get the current worker from store
+    this.store$ = this.store.select('worker').pipe(
+      map(workerState => {
+        console.log('Jsem tu');
+        this.worker = workerState.currentWorker;
+        console.log(this.worker);
+        return true;
+      }),
+      tap(() => {
+        this.store.dispatch(new TemplateActions.FetchTemplates());
         this.initForm();
-      }
-    );
-    this.docSub = this.store.select('template').pipe(
-      map(templateState => {
-        return templateState.templates
-      })).subscribe(templates => {
-        this.templates = templates;
-      })
-
+      }))
   }
 
   initForm() {
-    this.storeSub = this.store.select('worker').pipe(
-      map(workerState => {
-        return workerState.workers.find((worker, _id) => {
-          return worker._id === this.id;
-        });
-      })).subscribe(worker => {
-        this.workerNow = worker;
-        this.workerId = worker._id;
-      })
-
-
-
+    console.log(this.worker);
+    //Get the templates from store
+    this.templates$ = this.store.select('template').pipe(
+      map(templateState => {
+        return templateState.templates
+      }));
   }
 
   onSubmit(template: Template) {
-    this.store.dispatch(new WorkerActions.CreateDoc({ workerId: this.workerId, templateId: template._id }));
-  }
-
-  ngOnDestroy() {
-    this.storeSub.unsubscribe();
+    console.log(template);
+    this.store.dispatch(new WorkerActions.CreateDoc({ workerId: this.worker._id, templateId: template._id }));
   }
 
 }

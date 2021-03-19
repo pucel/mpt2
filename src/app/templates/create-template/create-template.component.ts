@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
 import { Template } from '../template.model';
 import * as TemplateActions from '../store/template.actions';
 import * as AppState from '../../store/app.reducer';
-import { Subscription } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-create-template',
@@ -14,12 +14,14 @@ import { map } from "rxjs/operators";
   styleUrls: ['./create-template.component.scss']
 })
 export class CreateTemplateComponent {
-  newTemplateForm: FormGroup;
-  fileToUpload: File = null;
-  id: Subscription;
-  templateId: string;
 
-  constructor(private store: Store<AppState.AppState>, private route: ActivatedRoute, private router: Router) { }
+  newTemplateForm: FormGroup;
+  //fileToUpload: File = null;
+
+  templateId: string;
+  id$: Observable<boolean>;
+
+  constructor(private store: Store<AppState.AppState>) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -35,16 +37,16 @@ export class CreateTemplateComponent {
   }
 
   onSubmit() {
-    console.log('1');
-    this.id = this.store.select('uploadFile').pipe(
-      map(uploadFileState => { return uploadFileState.id })
-    ).subscribe((upload) => {
-      this.templateId = upload;
-    })
+    // get the id from the uploaded file
+    this.id$ = this.store.select('uploadFile').pipe(
+      map(uploadFileState => {
+        this.templateId = uploadFileState.id;
+        return true
+      })
+    )
+    this.id$.subscribe();
+    // save new template
     const newtemplate = new Template(this.templateId, this.newTemplateForm.value['name'], 1, this.newTemplateForm.value['description']);
-    console.log(newtemplate);
     this.store.dispatch(new TemplateActions.AddTemplate(newtemplate));
-    console.log('2');
-    this.router.navigate(['/templates']);
   }
 }

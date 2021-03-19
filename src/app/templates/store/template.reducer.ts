@@ -7,9 +7,7 @@ export interface State {
 }
 
 const initialState: State = {
-  templates: [
-    new Template("35", "Contract", 1, "Popis")
-  ]
+  templates: []
 }
 
 

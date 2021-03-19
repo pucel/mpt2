@@ -7,9 +7,7 @@ export interface State {
 }
 
 const initialState: State = {
-  workers: [
-    new Worker("60469bd3327f0dd8c219231a", "Šimon", "Pučelík")
-  ],
+  workers: [],
   currentWorker: null
 }
 

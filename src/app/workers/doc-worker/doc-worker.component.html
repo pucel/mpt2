@@ -1,9 +1,8 @@
-<p>doc-worker works!</p>
-
-
-{{ workerNow.firstName}} {{workerNow.lastName}}
-
-
-<div *ngFor="let template of templates">
-  {{template.name}} {{template.version}} {{template.description}} <button (click)="onSubmit(template)">Create</button>
+<div *ngIf="store$| async">
+  <h3>{{ worker.firstName}} {{worker.lastName}}</h3>
 </div>
+
+<ul *ngFor="let template of templates$ | async">
+  <li>{{template.name}} {{template.version}} {{template.description}} <button
+      (click)="onSubmit(template)">Create</button></li>
+</ul>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import * as TemplateActions from '../store/template.actions';
 import * as AppState from '../../store/app.reducer';
 import { Template } from '../template.model';
@@ -14,12 +14,9 @@ import { Template } from '../template.model';
 })
 export class ListtemplateComponent implements OnInit {
 
-  id: string;
-  templates: Template[];
-  subscription: Subscription;
+  templates$: Observable<Template[]>;
 
-  constructor(private store: Store<AppState.AppState>, private router: Router,
-    private route: ActivatedRoute) { }
+  constructor(private store: Store<AppState.AppState>) { }
 
 
   ngOnInit(): void {
@@ -27,18 +24,14 @@ export class ListtemplateComponent implements OnInit {
   }
 
   start() {
+    // get templates from store
     this.store.dispatch(new TemplateActions.FetchTemplates());
 
-    this.subscription = this.store.select('template')
+    this.templates$ = this.store.select('template')
       .pipe(
         map(
           templateState => templateState.templates
         ))
-      .subscribe(
-        (templates: Template[]) => {
-          this.templates = templates;
-        }
-      );
   }
 
   onDelete(template: Template) {
@@ -46,7 +39,4 @@ export class ListtemplateComponent implements OnInit {
     this.start();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }
