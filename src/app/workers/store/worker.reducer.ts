@@ -1,17 +1,42 @@
+
 import { Worker } from "../worker.model";
 import * as WorkerActions from './worker.actions';
+
+export enum DisplayLeft {
+  Ready = 'Ready',
+  Update = 'Update',
+  Files = 'Files',
+  UpdateCompleted = 'UpdateCompleted',
+  CreateDoc = 'CreateDoc',
+  Detail = 'Detail',
+  Workers = 'Workers'
+}
+
+export enum DisplayRight {
+  Ready = 'Ready',
+  Update = 'Update',
+  Files = 'Files',
+  UpdateCompleted = 'UpdateCompleted',
+  CreateDoc = 'CreateDoc',
+  Detail = 'Detail',
+  Workers = 'Workers',
+  Nothing = 'Nothing'
+}
+
 
 export interface State {
   workers: Worker[];
   currentWorker: Worker;
+  displayLeftPanel: DisplayLeft;
+  displayRightPanel: DisplayRight;
 }
 
 const initialState: State = {
   workers: [],
-  currentWorker: null
+  currentWorker: null,
+  displayLeftPanel: DisplayLeft.Workers,
+  displayRightPanel: DisplayRight.Nothing
 }
-
-
 
 export function workerReducer(
   state = initialState,
@@ -20,7 +45,8 @@ export function workerReducer(
     case WorkerActions.FETCH_WORKERS:
       return {
         ...state,
-        initialState
+        displayLeftPanel: DisplayLeft.Workers,
+        displayRightPanel: DisplayRight.Nothing
       };
     case WorkerActions.SET_WORKERS:
       return {
@@ -29,37 +55,60 @@ export function workerReducer(
       };
     case WorkerActions.ADD_WORKER:
       return {
-        ...state,
-        workers: [...state.workers, action.payload]
+        ...state
       };
     case WorkerActions.UPDATE_WORKER:
-      // const updatedWorker = {
-      //   ...state.workers[action.payload.index],
-      //   ...action.payload.newWorker
-      // };
-
-      // const updatedWorkers = [...state.workers];
-      // updatedWorkers[action.payload.index] = updatedWorker;
       return {
-        ...state
-        //, workers: updatedWorkers
-      };
+        ...state,
+        displayLeftPanel: DisplayLeft.Detail,
+        displayRightPanel: DisplayRight.Files,
+      }
+    case WorkerActions.SHOW_WORKER_DETAIL:
+      return {
+        ...state,
+        displayLeftPanel: DisplayLeft.Detail,
+        displayRightPanel: DisplayRight.Files,
+        currentWorker: action.payload,
+      }
     case WorkerActions.GET_WORKER:
       return {
         ...state
       };
-    // case WorkerActions.DELETE_WORKER:
-    // return {
-    //   ...state
-    // };
+    case WorkerActions.DELETE_WORKER:
+      return {
+        ...state,
+        displayLeftPanel: DisplayLeft.Workers,
+        displayRightPanel: DisplayRight.Nothing,
+      };
     case WorkerActions.CREATE_DOC:
       return {
         ...state
       };
-    case WorkerActions.SET_CURRENT_WORKER:
+    case WorkerActions.EDIT_WORKER:
       return {
         ...state,
-        currentWorker: action.payload
+        currentWorker: action.payload,
+        displayLeftPanel: DisplayLeft.Update,
+        displayRightPanel: DisplayRight.Files,
+      };
+    case WorkerActions.SHOW_WORKERS_FILES:
+      return {
+        ...state,
+        currentWorker: action.payload,
+        displayLeftPanel: DisplayLeft.Detail,
+        displayRightPanel: DisplayRight.Files,
+      };
+    // case WorkerActions.SET_WORKER_LIST_STATE:
+    //   return {
+    //     ...state,
+    //     status: action.payload
+    //   };
+    case WorkerActions.CREATE_NEW_DOCUMENTS:
+      return {
+        ...state,
+        currentWorker: action.payload,
+        displayLeftPanel: DisplayLeft.Detail,
+        displayRightPanel: DisplayRight.CreateDoc
       };
     default:
       return state;

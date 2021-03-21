@@ -21,19 +21,33 @@ export class WorkerEffects {
         );
     }),
     map(workers => {
-      return workers.map(worker => {
-        return {
-          ...worker,
-        };
-      });
-    }),
-    map(workers => {
       return new WorkerActions.SetWorkers(workers);
     })
   )
 
+  @Effect()
+  updatedWorker = this.actions$.pipe(
+    ofType(WorkerActions.UPDATE_WORKER),
+    switchMap((actionData) => {
+      return this.http
+        .put<Worker[]>(
+          'http://localhost:5000/update', actionData
+        )
+    }),
+    map(workers => {
+      return new WorkerActions.SetWorkers(workers);
+    })
+  );
+
+
+
+
+
+
+
   @Effect({ dispatch: false })
-  createDoc = this.actions$.pipe(ofType(WorkerActions.CREATE_DOC),
+  createDoc = this.actions$.pipe(
+    ofType(WorkerActions.CREATE_DOC),
     switchMap((actionData) => {
       return this.http.put<Blob>(
         'http://localhost:5000/createDoc', actionData, { responseType: 'blob' as 'json' }
@@ -43,27 +57,23 @@ export class WorkerEffects {
       const blob = new Blob([downloadedDoc], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
-
     })
   )
 
-  @Effect({ dispatch: false })
+  @Effect()
   addWorker = this.actions$.pipe(ofType(WorkerActions.ADD_WORKER),
     switchMap((actionData) => {
-      return this.http.post(
+      return this.http.put<Worker[]>(
         'http://localhost:5000/add', actionData
       )
+    }),
+    map(workers => {
+      console.log('map set workers');
+      return new WorkerActions.SetWorkers(workers);
     })
   );
 
-  @Effect({ dispatch: false })
-  updatedWorker = this.actions$.pipe(ofType(WorkerActions.UPDATE_WORKER),
-    switchMap((actionData) => {
-      return this.http.post(
-        'http://localhost:5000/update', actionData
-      )
-    })
-  );
+
 
 
   @Effect({ dispatch: false })
@@ -75,12 +85,15 @@ export class WorkerEffects {
     })
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   deleteWorker = this.actions$.pipe(ofType(WorkerActions.DELETE_WORKER),
     switchMap((actionData) => {
-      return this.http.put(
+      return this.http.put<Worker[]>(
         'http://localhost:5000/deleteWorker', actionData
       )
+    }),
+    map(workers => {
+      return new WorkerActions.SetWorkers(workers);
     })
   );
 

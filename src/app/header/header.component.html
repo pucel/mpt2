@@ -1,22 +1,18 @@
-<nav>
-  <div>
-    <div>
-      <ul>
-        <li routerLinkActive="active" *ngIf="isAuthenticated">
-          <a routerLink="/workers">Workers</a>
-        </li>
-        <li routerLinkActive="active" *ngIf="isAuthenticated">
-          <a routerLink="/templates">templates</a>
-        </li>
-        <li routerLinkActive="active" *ngIf="!isAuthenticated">
-          <a routerLink="/auth">Authenticate</a>
-        </li>
-      </ul>
-      <ul>
-        <li *ngIf="isAuthenticated">
-          <a routerLink="/auth" (click)="onLogout()">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav class="main-nav">
+  <ul class="main-nav__items">
+    <li class="main-nav__item" routerLinkActive="active" *ngIf="isAuthenticated">
+      <a (click)="onWorkers()">Workers</a>
+    </li>
+    <li class="main-nav__item" routerLinkActive="active" *ngIf="isAuthenticated">
+      <a routerLink="/templates">Templates</a>
+    </li>
+    <li class="main-nav__item" routerLinkActive="active" *ngIf="!isAuthenticated">
+      <a routerLink="/auth">Authenticate</a>
+    </li>
+  </ul>
+  <ul class="main-nav__items">
+    <li class="main-nav__item" *ngIf="isAuthenticated">
+      <a routerLink="/auth" (click)="onLogout()">Logout</a>
+    </li>
+  </ul>
 </nav>

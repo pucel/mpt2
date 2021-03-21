@@ -8,6 +8,7 @@ import * as WorkerActions from '../store/worker.actions';
 import * as TemplateActions from '../../templates/store/template.actions';
 import { Worker } from '../worker.model';
 import { Template } from '../../templates/template.model';
+import { DisplayLeft, DisplayRight } from '../store/worker.reducer';
 
 @Component({
   selector: 'app-doc-worker',
@@ -28,9 +29,7 @@ export class DocWorkerComponent implements OnInit {
     //Get the current worker from store
     this.store$ = this.store.select('worker').pipe(
       map(workerState => {
-        console.log('Jsem tu');
         this.worker = workerState.currentWorker;
-        console.log(this.worker);
         return true;
       }),
       tap(() => {
@@ -40,7 +39,6 @@ export class DocWorkerComponent implements OnInit {
   }
 
   initForm() {
-    console.log(this.worker);
     //Get the templates from store
     this.templates$ = this.store.select('template').pipe(
       map(templateState => {
@@ -49,8 +47,10 @@ export class DocWorkerComponent implements OnInit {
   }
 
   onSubmit(template: Template) {
-    console.log(template);
     this.store.dispatch(new WorkerActions.CreateDoc({ workerId: this.worker._id, templateId: template._id }));
   }
 
+  onClose() {
+    //this.store.dispatch(new WorkerActions.SetWorkerListState(WorkerStatus.Ready))
+  }
 }

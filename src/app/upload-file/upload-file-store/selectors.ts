@@ -13,7 +13,8 @@ const getStarted = (state: State): boolean =>
 const getRequested = (state: State): boolean =>
   state.status === UploadStatus.Requested;
 
-const getReady = (state: State): boolean => state.status === UploadStatus.Ready;
+const getReady = (state: State): boolean =>
+  state.status === UploadStatus.Ready;
 
 const getProgress = (state: State): number => state.progress;
 

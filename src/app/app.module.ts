@@ -16,11 +16,13 @@ import { HeaderComponent } from './header/header.component';
 import { UploadFileStoreModule } from './upload-file/upload-file-store.module';
 import { TemplateEffects } from './templates/store/template.effects';
 import { DocumentEffects } from './documents/store/document.effects';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
 
 
   ],

@@ -1,0 +1,78 @@
+<div class="header-grid" *ngIf="store$|async">
+
+
+  <div *ngIf="detail$ | async" class="header-left">
+    <h3>Worker {{ worker.firstName}} {{worker.lastName}}</h3>
+  </div>
+
+  <div *ngIf="detail$ | async" class="header-left-button">
+    <button (click)="onDelete(worker)">Delete</button>
+    <button (click)="onEdit(worker)">Edit</button>
+  </div>
+
+  <div class="header-right" *ngIf="detail$ | async">
+    <div class="header-right-button">
+      <button (click)="onShowFiles(worker)">Files</button>
+      <button (click)="onCreateDoc(worker)">New Document</button>
+    </div>
+  </div>
+
+  <div class="header-left" *ngIf="workerList$ | async">
+    <h3>Workers</h3>
+  </div>
+
+  <div *ngIf="workerList$ | async" class="header-left-button">
+    <button [routerLink]="['./', 'new']">New Worker</button>
+  </div>
+</div>
+
+
+<!-- <div *ngIf="detail$ | async" class="header-left-button">
+  <button (click)="onDelete(worker)">Delete</button>
+  <button (click)="onEdit(worker)">Edit</button>
+</div> -->
+
+
+<!--
+  <div class="header-right" *ngIf="createDoc$ | async">
+    <button (click)="onShowFiles(worker)">Files</button>
+  </div>
+  <div class="header-left" *ngIf="update$ | async">
+    <button (click)="onDelete(worker)">Delete</button>
+  </div>  -->
+
+
+
+
+
+
+
+<!-- <div class="header-left" *ngIf="workerList$ | async">
+  <button [routerLink]="['./', 'new']">New Worker</button>
+  <p *ngIf="numberOfWorkers$ | async">No workers</p>
+  <ul *ngFor="let worker of workers$ | async">
+    <li>
+      <section class="package">
+        <a (click)="onDetail(worker)">
+          <h1 class="package__title">{{worker.firstName}} {{worker.lastName}}</h1>
+          <h2 class="package__badge">Issue</h2>
+          <h2 class="package__subtitle">Project Manager</h2>
+          <p class="package__info">Benefit from increased storage and faster support to ensure that your mission-critical
+            data
+            and applications
+            are always available!</p>
+        </a>
+      </section>
+
+
+
+
+      <button (click)="onEdit(worker)">Edit</button>
+      <button (click)="onCreateDoc(worker)">New Document</button>
+      <button (click)="onDelete(worker)">Delete</button>
+      <button (click)="onShowFiles(worker)">Files</button>
+    </li>
+  </ul>
+</div> -->
+
+

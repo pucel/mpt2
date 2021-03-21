@@ -1,21 +1,46 @@
-<p>list-worker works!</p>
-<button [routerLink]="['./', 'new']">New Worker</button>
+<div class="worker-container">
+  <div class="worker-header">
+    <app-header-worker></app-header-worker>
+  </div>
 
-<ul *ngFor="let worker of workers$ | async">
-  <li>{{worker.firstName}} {{worker.lastName}}
-    <button (click)="onEdit(worker)">Edit</button>
-    <button (click)="onCreateDoc(worker)">New Document</button>
-    <button (click)="onDelete(worker)">Delete</button>
-    <button (click)="onShowFiles(worker)">Files</button>
-  </li>
-</ul>
-<hr>
-<div *ngIf="displayFiles">
-  <app-list-document></app-list-document>
-</div>
-<div *ngIf="displayCreateDoc">
-  <app-doc-worker></app-doc-worker>
-</div>
-<div *ngIf="displayEditForm">
-  <app-update-worker></app-update-worker>
+  <div class="worker-main-left" *ngIf="workerList$ | async">
+    <!-- <button [routerLink]="['./', 'new']">New Worker</button> -->
+    <p *ngIf="numberOfWorkers$ | async">No workers</p>
+    <ul *ngFor="let worker of workers$ | async">
+      <li>
+        <section class="package">
+          <a (click)="onDetail(worker)">
+            <h1 class="package__title">{{worker.firstName}} {{worker.lastName}}</h1>
+            <h2 class="package__badge">Issue</h2>
+            <h2 class="package__subtitle">Project Manager</h2>
+            <!-- <p class="package__info">Benefit from increased storage and faster support to ensure that your mission-critical
+              data
+              and applications
+              are always available!</p> -->
+          </a>
+        </section>
+
+
+
+
+        <!-- <button (click)="onEdit(worker)">Edit</button>
+        <button (click)="onCreateDoc(worker)">New Document</button>
+        <button (click)="onDelete(worker)">Delete</button>
+        <button (click)="onShowFiles(worker)">Files</button> -->
+      </li>
+    </ul>
+  </div>
+
+  <div class="worker-main-left" *ngIf="detail$ | async">
+    <app-detail-worker></app-detail-worker>
+  </div>
+  <div class="worker-main-right" *ngIf="files$ | async">
+    <app-list-document></app-list-document>
+  </div>
+  <div class="worker-main-right" *ngIf="createDoc$ | async">
+    <app-doc-worker></app-doc-worker>
+  </div>
+  <div class="worker-main-left" *ngIf="update$ | async">
+    <app-update-worker></app-update-worker>
+  </div>
 </div>
