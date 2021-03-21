@@ -6,7 +6,8 @@ import * as DocumentActions from '../store/document.actions';
 import * as AppState from '../../store/app.reducer';
 import { Worker } from '../../workers/worker.model';
 import { CreatedDocument } from '../createdDocument.model';
-
+import * as WorkerActions from '../../workers/store/worker.actions';
+// import { WorkerStatus } from '../../workers/store/worker.reducer';
 
 @Component({
   selector: 'app-list-document',
@@ -40,5 +41,9 @@ export class ListDocumentComponent implements OnInit {
         map(
           documentState => documentState.documents
         ));
+  }
+
+  onClose() {
+    //this.store.dispatch(new WorkerActions.SetWorkerListState(WorkerStatus.Ready))
   }
 }

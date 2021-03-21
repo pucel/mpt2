@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
+import * as WorkerActions from '../workers/store/worker.actions';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,7 @@ export class HeaderComponent implements OnInit {
   user$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>, private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,11 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.store.dispatch(new AuthActions.Logout());
+  }
+
+  onWorkers() {
+    this.store.dispatch(new WorkerActions.FetchWorkers());
+    this.router.navigate(["/workers"]);
   }
 
 }

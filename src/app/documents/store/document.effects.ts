@@ -35,8 +35,6 @@ export class DocumentEffects {
   @Effect({ dispatch: false })
   addDocument = this.actions$.pipe(ofType(DocumentActions.ADD_DOCUMENT),
     switchMap((actionData) => {
-      console.log('effect');
-      console.log(actionData);
       return this.http.post(
         'http://localhost:5000/addtemplate', actionData
       )

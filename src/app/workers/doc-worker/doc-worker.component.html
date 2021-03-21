@@ -1,7 +1,7 @@
 <div *ngIf="store$| async">
   <h3>{{ worker.firstName}} {{worker.lastName}}</h3>
 </div>
-
+<a (click)="onClose()">close</a>
 <ul *ngFor="let template of templates$ | async">
   <li>{{template.name}} {{template.version}} {{template.description}} <button
       (click)="onSubmit(template)">Create</button></li>

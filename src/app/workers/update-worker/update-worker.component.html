@@ -1,9 +1,8 @@
-<p>update-worker works!</p>
-
 <div *ngIf="store$| async">
   <h3>{{ worker.firstName}} {{worker.lastName}}</h3>
 </div>
 
+<a (click)="onClose()">close</a>
 
 <div>
   <form [formGroup]="updateWorkerForm" (ngSubmit)="onSubmit()">

@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
+// import { WorkerStatus } from '../store/worker.reducer';
 import { Worker } from '../worker.model';
 
 @Component({
@@ -27,9 +28,7 @@ export class UpdateWorkerComponent implements OnInit {
     //Get the current worker from store
     this.store$ = this.store.select('worker').pipe(
       map(workerState => {
-        console.log('Jsem tu');
         this.worker = workerState.currentWorker;
-        console.log(this.worker);
         return true;
       }),
       tap(() => {
@@ -48,5 +47,10 @@ export class UpdateWorkerComponent implements OnInit {
   onSubmit() {
     const newWorker = new Worker(this.worker._id, this.updateWorkerForm.value['firstName'], this.updateWorkerForm.value['lastName']);
     this.store.dispatch(new WorkerActions.UpdateWorker(newWorker));
+
+  }
+
+  onClose() {
+    //this.store.dispatch(new WorkerActions.SetWorkerListState(WorkerStatus.Ready))
   }
 }

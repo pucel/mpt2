@@ -1,5 +1,6 @@
 import { Action } from "@ngrx/store";
 import { Worker } from "../worker.model";
+import { DisplayLeft, DisplayRight } from "./worker.reducer";
 
 export const FETCH_WORKERS = '[Workers] Fetch Workers';
 export const SET_WORKERS = '[Workers] Set Workers';
@@ -9,7 +10,12 @@ export const GET_WORKER = '[Workers] Get Worker';
 export const CREATE_DOC = '[Workers] Create Doc';
 export const DELETE_WORKER = '[Workers] Delete Worker';
 export const SET_CURRENT_WORKER = '[Workers] Set Current Worker';
-
+export const SET_WORKER_LIST_STATE = '[Workers] Set Worker list state';
+export const UPDATE_STARTED = '[Workers] Update Started';
+export const EDIT_WORKER = '[Workers] Edit Worker';
+export const SHOW_WORKERS_FILES = '[Workers] Show Workers Files';
+export const CREATE_NEW_DOCUMENTS = '[Workers] Create New Documents';
+export const SHOW_WORKER_DETAIL = '[Workers] Show Worker Detail';
 
 export class FetchWorkers implements Action {
   readonly type = FETCH_WORKERS;
@@ -59,6 +65,45 @@ export class SetCurrentWorker implements Action {
   constructor(public payload: Worker) { }
 }
 
+// export class SetWorkerListState implements Action {
+//   readonly type = SET_WORKER_LIST_STATE;
+
+//   constructor(public payload: WorkerStatus) { }
+// }
+
+// export class UpdateStarted implements Action {
+//   readonly type = UPDATE_STARTED;
+
+//   constructor(public payload: WorkerStatus) { }
+// }
+
+export class EditWorker implements Action {
+  readonly type = EDIT_WORKER;
+
+  constructor(public payload: Worker) { }
+}
+
+export class ShowWorkersFiles implements Action {
+  readonly type = SHOW_WORKERS_FILES;
+
+  constructor(public payload: Worker) { }
+}
+
+export class CreateNewDocuments implements Action {
+  readonly type = CREATE_NEW_DOCUMENTS;
+
+  constructor(public payload: Worker) { }
+}
+
+export class ShowWorkerDetail implements Action {
+  readonly type = SHOW_WORKER_DETAIL;
+
+  constructor(public payload: Worker) { }
+}
+
+
+
+
 export type WorkerActions =
   | FetchWorkers
   | SetWorkers
@@ -67,4 +112,10 @@ export type WorkerActions =
   | GetWorker
   | CreateDoc
   | DeleteWorker
-  | SetCurrentWorker;
+  | SetCurrentWorker
+  // | SetWorkerListState
+  // | UpdateStarted
+  | EditWorker
+  | ShowWorkersFiles
+  | CreateNewDocuments
+  | ShowWorkerDetail;

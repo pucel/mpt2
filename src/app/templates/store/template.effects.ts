@@ -35,8 +35,6 @@ export class TemplateEffects {
   @Effect({ dispatch: false })
   addtemplate = this.actions$.pipe(ofType(TemplateActions.ADD_TEMPLATE),
     switchMap((actionData) => {
-      console.log('effect');
-      console.log(actionData);
       return this.http.post(
         'http://localhost:5000/addtemplate', actionData
       )
