@@ -32,6 +32,8 @@ const createDoc = (state: State): boolean =>
 const workersLength = (state: State): boolean =>
   state.workers.length === 0;
 
+const amountOfWorkers = (state: State): number =>
+  state.workers.length;
 
 
 
@@ -137,4 +139,15 @@ export const showDetail: MemoizedSelector<
   selectWorkerFeatureState,
   workerDetail
 );
+
+export const amountWorkers: MemoizedSelector<
+  object,
+  number
+> = createSelector(
+  selectWorkerFeatureState,
+  amountOfWorkers
+);
+
+
+
 export const selectors = createSelector(selectWorkerFeatureState, status => status.currentWorker);

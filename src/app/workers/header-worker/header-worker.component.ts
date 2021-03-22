@@ -33,6 +33,7 @@ export class HeaderWorkerComponent implements OnInit {
   createDoc$: Observable<boolean>;
   numberOfWorkers$: Observable<boolean>;
   store$: Observable<boolean>;
+  amountWorkers$: Observable<number>;
 
   constructor(private store: Store<AppState.AppState>) { }
 
@@ -53,6 +54,17 @@ export class HeaderWorkerComponent implements OnInit {
       select(fromWorkerSelectors.showWorkerList)
     );
 
+    this.update$ = this.store.pipe(
+      select(fromWorkerSelectors.selectWorkerUpdate)
+    );
+
+    this.numberOfWorkers$ = this.store.pipe(
+      select(fromWorkerSelectors.getWorkersLength)
+    );
+
+    this.amountWorkers$ = this.store.pipe(
+      select(fromWorkerSelectors.amountWorkers)
+    );
 
 
     // this.numberOfWorkers$ = this.store.pipe(
@@ -67,12 +79,6 @@ export class HeaderWorkerComponent implements OnInit {
 
     // this.isReady$ = this.store.pipe(
     //   select(fromWorkerSelectors.selectWorkerReady)
-    // );
-
-
-
-    // this.update$ = this.store.pipe(
-    //   select(fromWorkerSelectors.selectWorkerUpdate)
     // );
 
     // this.isReady$ = this.store.pipe(

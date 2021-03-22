@@ -62,6 +62,7 @@ export function workerReducer(
         ...state,
         displayLeftPanel: DisplayLeft.Detail,
         displayRightPanel: DisplayRight.Files,
+        currentWorker: action.payload
       }
     case WorkerActions.SHOW_WORKER_DETAIL:
       return {

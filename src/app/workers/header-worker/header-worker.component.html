@@ -5,9 +5,20 @@
     <h3>Worker {{ worker.firstName}} {{worker.lastName}}</h3>
   </div>
 
+  <div *ngIf="update$ | async" class="header-left">
+    <h3>Worker {{ worker.firstName}} {{worker.lastName}}</h3>
+  </div>
+
   <div *ngIf="detail$ | async" class="header-left-button">
     <button (click)="onDelete(worker)">Delete</button>
     <button (click)="onEdit(worker)">Edit</button>
+  </div>
+
+  <div class="header-right" *ngIf="update$ | async">
+    <div class="header-right-button">
+      <button (click)="onShowFiles(worker)">Files</button>
+      <button (click)="onCreateDoc(worker)">New Document</button>
+    </div>
   </div>
 
   <div class="header-right" *ngIf="detail$ | async">
@@ -18,7 +29,7 @@
   </div>
 
   <div class="header-left" *ngIf="workerList$ | async">
-    <h3>Workers</h3>
+    <h3>Workers ({{amountWorkers$ | async}})</h3>
   </div>
 
   <div *ngIf="workerList$ | async" class="header-left-button">
@@ -74,5 +85,3 @@
     </li>
   </ul>
 </div> -->
-
-

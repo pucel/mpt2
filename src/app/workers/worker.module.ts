@@ -11,6 +11,7 @@ import { DocumentModule } from '../documents/document.module';
 import { DetailWorkerComponent } from './detail-worker/detail-worker.component';
 import { HeaderWorkerComponent } from './header-worker/header-worker.component';
 
+
 @NgModule({
   declarations: [
     CreateWorkerComponent,
@@ -19,7 +20,6 @@ import { HeaderWorkerComponent } from './header-worker/header-worker.component';
     DocWorkerComponent,
     DetailWorkerComponent,
     HeaderWorkerComponent
-
   ],
   imports: [RouterModule, ReactiveFormsModule, WorkerRoutingModule, CommonModule, DocumentModule]
 })
