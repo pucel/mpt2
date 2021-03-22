@@ -6,7 +6,6 @@ import { map, tap } from 'rxjs/operators';
 
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
-// import { WorkerStatus } from '../store/worker.reducer';
 import { Worker } from '../worker.model';
 
 @Component({
