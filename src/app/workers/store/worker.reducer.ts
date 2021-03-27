@@ -9,7 +9,8 @@ export enum DisplayLeft {
   UpdateCompleted = 'UpdateCompleted',
   CreateDoc = 'CreateDoc',
   Detail = 'Detail',
-  Workers = 'Workers'
+  Workers = 'Workers',
+  CreateWorker = 'CreateWorker'
 }
 
 export enum DisplayRight {
@@ -110,6 +111,12 @@ export function workerReducer(
         currentWorker: action.payload,
         displayLeftPanel: DisplayLeft.Detail,
         displayRightPanel: DisplayRight.CreateDoc
+      };
+    case WorkerActions.CREATING_NEW_WORKER:
+      return {
+        ...state,
+        displayLeftPanel: DisplayLeft.CreateWorker,
+        displayRightPanel: DisplayRight.Nothing
       };
     default:
       return state;

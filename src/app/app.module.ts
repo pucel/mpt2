@@ -17,6 +17,8 @@ import { UploadFileStoreModule } from './upload-file/upload-file-store.module';
 import { TemplateEffects } from './templates/store/template.effects';
 import { DocumentEffects } from './documents/store/document.effects';
 import { FooterComponent } from './footer/footer.component';
+import { primeNgModule } from './primeng.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { FooterComponent } from './footer/footer.component';
     EffectsModule.forRoot([WorkerEffects, AuthEffects, TemplateEffects, DocumentEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
-    UploadFileStoreModule
+    UploadFileStoreModule,
+    primeNgModule,
+    BrowserAnimationsModule
   ],
   providers: [,],
   bootstrap: [AppComponent]

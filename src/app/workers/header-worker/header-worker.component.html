@@ -33,7 +33,7 @@
   </div>
 
   <div *ngIf="workerList$ | async" class="header-left-button">
-    <button [routerLink]="['./', 'new']">New Worker</button>
+    <button (click)="onNewWorker()">New Worker</button>
   </div>
 </div>
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import * as AppState from '../../store/app.reducer';
@@ -13,27 +12,112 @@ import { Worker } from '../worker.model';
   styleUrls: ['./create-worker.component.scss']
 })
 export class CreateWorkerComponent implements OnInit {
+
+  countries = [
+    { name: 'Australia', code: 'AU' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'China', code: 'CN' },
+    { name: 'Egypt', code: 'EG' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'India', code: 'IN' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'United States', code: 'US' }
+  ];
+
+  banks = [
+    { name: 'Australia', code: 'AU' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'China', code: 'CN' },
+    { name: 'Egypt', code: 'EG' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'India', code: 'IN' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'United States', code: 'US' }
+  ];
+
+  healthInsurance = [
+    { name: 'Australia', code: 'AU' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'China', code: 'CN' },
+    { name: 'Egypt', code: 'EG' },
+    { name: 'France', code: 'FR' },
+    { name: 'Germany', code: 'DE' },
+    { name: 'India', code: 'IN' },
+    { name: 'Japan', code: 'JP' },
+    { name: 'Spain', code: 'ES' },
+    { name: 'United States', code: 'US' }
+  ];
+
   newWorkerForm: FormGroup;
 
-  constructor(private store: Store<AppState.AppState>, private router: Router) { }
+  constructor(private store: Store<AppState.AppState>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm() {
-    let firstName = "";
-    let lastName = "";
-    this.newWorkerForm = new FormGroup({
-      'firstName': new FormControl(firstName, Validators.required),
-      'lastName': new FormControl(lastName, Validators.required),
-    });
+    //let dateOfBirth: Date = null;
+
+    this.newWorkerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      middleName: [''],
+      gender: [''],
+      dateOfBirth: [''],
+      citizenship: [''],
+      country: [''],
+      street: [''],
+      city: [''],
+      zip: [''],
+      countryAddress: [''],
+      streetContact: [''],
+      cityContact: [''],
+      zipContact: [''],
+      countryAddressContact: [''],
+      phone: [''],
+      email: [''],
+      bank: [''],
+      bankCode: [''],
+      bankAccountNumber: [''],
+      iban: [''],
+      swift: [''],
+      healthInsurance: [''],
+      bornNumber: [''],
+      contractType: [''],
+      dateOfCooperation: [''],
+      capacity: [''],
+      capacityOther: [''],
+      linkedIn: [''],
+      facebook: [''],
+      salary: [''],
+      limitation: [''],
+      fixSalaryAmount: [''],
+      salaryPerHour: [''],
+      graduatedFixSalary: [''],
+      salaryChangeFrom: [''],
+      graduatedSalaryChange: [''],
+      fixVariableSalary: [''],
+      variablePart: [''],
+      dateLimitation: [''],
+      position: [''],
+      team: [''],
+      seat: [''],
+      manager: [''],
+      costCenter: [''],
+      activeTradingLicence: [''],
+      exEmployer: [''],
+      student: ['']
+    }
+    );
   }
 
   onSubmit() {
-    const newWorker = new Worker(null, this.newWorkerForm.value['firstName'], this.newWorkerForm.value['lastName']);
-    this.store.dispatch(new WorkerActions.AddWorker(newWorker));
-    this.router.navigate(['/workers']);
+    this.store.dispatch(new WorkerActions.AddWorker(<Worker>this.newWorkerForm.value));
   }
 
 }

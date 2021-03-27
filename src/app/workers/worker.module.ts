@@ -10,6 +10,7 @@ import { DocWorkerComponent } from './doc-worker/doc-worker.component';
 import { DocumentModule } from '../documents/document.module';
 import { DetailWorkerComponent } from './detail-worker/detail-worker.component';
 import { HeaderWorkerComponent } from './header-worker/header-worker.component';
+import { primeNgModule } from '../primeng.module';
 
 
 @NgModule({
@@ -21,6 +22,6 @@ import { HeaderWorkerComponent } from './header-worker/header-worker.component';
     DetailWorkerComponent,
     HeaderWorkerComponent
   ],
-  imports: [RouterModule, ReactiveFormsModule, WorkerRoutingModule, CommonModule, DocumentModule]
+  imports: [RouterModule, ReactiveFormsModule, WorkerRoutingModule, CommonModule, DocumentModule, primeNgModule]
 })
 export class WorkerModule { }

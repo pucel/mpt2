@@ -44,8 +44,8 @@ export class UpdateWorkerComponent implements OnInit {
   }
 
   onSubmit() {
-    const newWorker = new Worker(this.worker._id, this.updateWorkerForm.value['firstName'], this.updateWorkerForm.value['lastName']);
-    this.store.dispatch(new WorkerActions.UpdateWorker(newWorker));
+    // const newWorker = new Worker(this.worker._id, this.updateWorkerForm.value['firstName'], this.updateWorkerForm.value['lastName']);
+    // this.store.dispatch(new WorkerActions.UpdateWorker(newWorker));
 
   }
 

@@ -46,7 +46,8 @@ const workerList = (state: State): boolean =>
 const workerDetail = (state: State): boolean =>
   state.displayLeftPanel === DisplayLeft.Detail;
 
-
+const showCreateWorker = (state: State): boolean =>
+  state.displayLeftPanel === DisplayLeft.CreateWorker;
 
 
 export const selectWorkerFeatureState: MemoizedSelector<
@@ -54,6 +55,13 @@ export const selectWorkerFeatureState: MemoizedSelector<
   State
 > = createFeatureSelector<State>('worker');
 
+export const createWorker: MemoizedSelector<
+  object,
+  boolean
+> = createSelector(
+  selectWorkerFeatureState,
+  showCreateWorker
+);
 
 
 export const getWorkersLength: MemoizedSelector<

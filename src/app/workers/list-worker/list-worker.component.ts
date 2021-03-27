@@ -32,6 +32,7 @@ export class ListWorkerComponent implements OnInit {
   updateCompleted$: Observable<boolean>;
   createDoc$: Observable<boolean>;
   numberOfWorkers$: Observable<boolean>;
+  createWorker$: Observable<boolean>;
 
 
   constructor(private store: Store<AppState.AppState>) { }
@@ -70,6 +71,9 @@ export class ListWorkerComponent implements OnInit {
       select(fromWorkerSelectors.getWorkersLength)
     );
 
+    this.createWorker$ = this.store.pipe(
+      select(fromWorkerSelectors.createWorker)
+    );
 
     // this.isReady$ = this.store.pipe(
     //   select(fromWorkerSelectors.selectWorkerReady)
