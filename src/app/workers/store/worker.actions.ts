@@ -16,6 +16,7 @@ export const EDIT_WORKER = '[Workers] Edit Worker';
 export const SHOW_WORKERS_FILES = '[Workers] Show Workers Files';
 export const CREATE_NEW_DOCUMENTS = '[Workers] Create New Documents';
 export const SHOW_WORKER_DETAIL = '[Workers] Show Worker Detail';
+export const CREATING_NEW_WORKER = '[Workers] Creating New Worker';
 
 export class FetchWorkers implements Action {
   readonly type = FETCH_WORKERS;
@@ -34,6 +35,14 @@ export class AddWorker implements Action {
 
   constructor(public payload: Worker) { }
 }
+
+export class CreatingNewWorker implements Action {
+  readonly type = CREATING_NEW_WORKER;
+
+  constructor() { }
+}
+
+
 
 export class UpdateWorker implements Action {
   readonly type = UPDATE_WORKER;
@@ -114,7 +123,7 @@ export type WorkerActions =
   | DeleteWorker
   | SetCurrentWorker
   // | SetWorkerListState
-  // | UpdateStarted
+  | CreatingNewWorker
   | EditWorker
   | ShowWorkersFiles
   | CreateNewDocuments

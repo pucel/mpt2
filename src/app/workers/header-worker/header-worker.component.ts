@@ -115,4 +115,8 @@ export class HeaderWorkerComponent implements OnInit {
   onEdit(worker: Worker) {
     this.store.dispatch(new WorkerActions.EditWorker(worker));
   }
+
+  onNewWorker() {
+    this.store.dispatch(new WorkerActions.CreatingNewWorker());
+  }
 }
