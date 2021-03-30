@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  overflow: none;
+}
+
+html {
+  overflow: none;
+  margin: 0;
+  max-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  background: $color-background;
+  color: $color-primary;
+}
+
+button {
+  background: $color-background;
+  border-radius: 5px;
+  height: 2rem;
+  width: 10rem;
+  font-weight: bold;
+  color: $color-primary;
+}
+
+button:hover {
+  border: 3px solid $color-background;
+}
+
+a,
+label,
+h1,
+h2,
+h3,
+h4,
+p,
+li {
+  color: $color-background;
+}

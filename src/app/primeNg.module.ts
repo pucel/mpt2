@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { AccordionModule } from 'primeng/accordion'
 import { FieldsetModule } from 'primeng/fieldset';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     DropdownModule,
     InputMaskModule,
     AccordionModule,
-    FieldsetModule
+    FieldsetModule,
+    ScrollPanelModule
   ],
   exports: [
     InputTextModule,
@@ -28,7 +30,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     DropdownModule,
     InputMaskModule,
     AccordionModule,
-    FieldsetModule
+    FieldsetModule,
+    ScrollPanelModule
   ]
 })
 

@@ -5,9 +5,10 @@ import { DocWorkerComponent } from './doc-worker/doc-worker.component';
 import { ListWorkerComponent } from './list-worker/list-worker.component';
 import { UpdateWorkerComponent } from './update-worker/update-worker.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { ContainerWorkerComponent } from './container-worker/container-worker.component';
 
 const routes: Routes = [
-  { path: '', component: ListWorkerComponent, canActivate: [AuthGuard] },
+  { path: '', component: ContainerWorkerComponent, canActivate: [AuthGuard] },
   { path: 'new', component: CreateWorkerComponent, canActivate: [AuthGuard] },
   { path: 'edit', component: UpdateWorkerComponent, canActivate: [AuthGuard] },
   { path: ':id/edit', component: UpdateWorkerComponent, canActivate: [AuthGuard] },

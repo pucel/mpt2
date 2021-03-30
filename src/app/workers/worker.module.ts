@@ -11,6 +11,7 @@ import { DocumentModule } from '../documents/document.module';
 import { DetailWorkerComponent } from './detail-worker/detail-worker.component';
 import { HeaderWorkerComponent } from './header-worker/header-worker.component';
 import { primeNgModule } from '../primeng.module';
+import { ContainerWorkerComponent } from './container-worker/container-worker.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { primeNgModule } from '../primeng.module';
     ListWorkerComponent,
     DocWorkerComponent,
     DetailWorkerComponent,
-    HeaderWorkerComponent
+    HeaderWorkerComponent,
+    ContainerWorkerComponent
   ],
   imports: [RouterModule, ReactiveFormsModule, WorkerRoutingModule, CommonModule, DocumentModule, primeNgModule]
 })

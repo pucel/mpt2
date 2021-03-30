@@ -1,0 +1,27 @@
+<div class="component-list-container">
+  <div class="component-main-left">
+    <div *ngIf="showTemplates$ | async">
+      <app-list-template></app-list-template>
+    </div>
+    <div *ngIf="showDetail$ | async">
+      <app-detail-template></app-detail-template>
+    </div>
+    <div *ngIf="showUpdate$ | async">
+      <app-update-template></app-update-template>
+    </div>
+
+  </div>
+
+  <div class="component-main-right">
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>

@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 
 import * as AppState from '../../store/app.reducer';
 import * as WorkerActions from '../store/worker.actions';
-import { DisplayRight, DisplayLeft } from '../store/worker.reducer';
 import { Worker } from '../worker.model';
 
 @Component({
@@ -28,5 +27,16 @@ export class DetailWorkerComponent implements OnInit {
         return true;
       }));
   }
+
+  // delete worker
+  onDelete(worker: Worker) {
+    this.store.dispatch(new WorkerActions.DeleteWorker(worker._id));
+  }
+
+  // show component for edit
+  onEdit(worker: Worker) {
+    this.store.dispatch(new WorkerActions.EditWorker(worker));
+  }
+
 
 }

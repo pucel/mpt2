@@ -1,0 +1,37 @@
+<div class="component-list-container">
+  <div class="component-main-left">
+
+
+    <div *ngIf="workerList$ | async">
+      <app-list-worker></app-list-worker>
+    </div>
+    <div *ngIf="createWorker$ | async">
+      <app-create-worker></app-create-worker>
+    </div>
+    <div *ngIf="detail$ | async">
+      <app-detail-worker></app-detail-worker>
+    </div>
+    <div *ngIf="update$ | async">
+      <app-update-worker></app-update-worker>
+    </div>
+
+  </div>
+
+  <div class="component-main-right">
+
+    <div *ngIf="files$ | async">
+      <app-list-document></app-list-document>
+    </div>
+    <div *ngIf="createDoc$ | async">
+      <app-doc-worker></app-doc-worker>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</div>

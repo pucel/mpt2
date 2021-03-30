@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 import * as WorkerActions from '../workers/store/worker.actions';
+import * as TemplateActions from '../templates/store/template.actions';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -38,6 +39,9 @@ export class HeaderComponent implements OnInit {
     this.store.dispatch(new WorkerActions.FetchWorkers());
     this.router.navigate(["/workers"]);
   }
-
+  onTemplates() {
+    this.store.dispatch(new TemplateActions.FetchTemplates());
+    this.router.navigate(["/templates"]);
+  }
 }
 

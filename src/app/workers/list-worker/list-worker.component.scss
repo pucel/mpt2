@@ -1,27 +1,27 @@
-.worker-container {
-  margin: 3px;
-  height: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas:
-    "worker-header worker-header"
-    "worker-main-left worker-main-right";
-  grid-gap: 3px;
-}
+// .worker-container {
+//   margin: 3px;
+//   height: auto;
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   grid-template-rows: 60px 1fr;
+//   grid-template-areas:
+//     "worker-header worker-header"
+//     "worker-main-left worker-main-right";
+//   grid-gap: 3px;
+// }
 
-.worker-header {
-  height: 50px;
-  grid-area: worker-header;
-}
+// .worker-header {
+//   height: 50px;
+//   grid-area: worker-header;
+// }
 
-.worker-main-right {
-  grid-area: worker-main-right;
-}
+// .worker-main-right {
+//   grid-area: worker-main-right;
+// }
 
-.worker-main-right {
-  grid-area: worker-main-right;
-}
+// .worker-main-right {
+//   grid-area: worker-main-right;
+// }
 
 .package {
   width: auto;
@@ -89,80 +89,3 @@ li {
 .clearfix {
   clear: both;
 }
-
-// #plus {
-//   background: rgba(213, 255, 220, 0.95);
-// }
-
-// #free {
-//   background: rgba(234, 252, 237, 0.95);
-//   float: right;
-//   border-right: none;
-//   border-left: 4px solid #0e4f1f;
-//   text-align: right;
-// }
-
-// #free:hover,
-// #free:active {
-//   border-left-color: #ff5454;
-// }
-
-// #premium {
-//   background: rgba(14, 79, 31, 0.95);
-// }
-
-// #premium .package__title {
-//   color: white;
-// }
-
-// #premium .package__subtitle {
-//   color: #bbb;
-// }
-
-// @media (min-width: 40rem) {
-//   main {
-//     max-width: 1500px;
-//     margin-left: auto;
-//     margin-right: auto;
-//   }
-// }
-
-// @media (min-width: 1500px) {
-//   .package {
-//     border-left: 4px solid #0e4f1f;
-//   }
-
-//   #free {
-//     border-right: 4px solid #0e4f1f;
-//   }
-
-//   #free:hover,
-//   #free:active {
-//     border-right-color: #ff5454;
-//   }
-// }
-//--------------------------------------------------------------------------------------------------
-
-// @font-face {
-//   font-family: "AnonymousPro";
-//   src: url("anonymousPro-Regular.ttf") format("truetype");
-// }
-
-// @font-face {
-//   font-family: "AnonymousPro";
-//   src: url("anonymousPro-Bold.ttf");
-//   font-weight: 700;
-// }
-
-// main {
-//   padding-top: 2rem;
-// }
-
-// .background {
-//   background: url("../images/plans-background.jpg") center/cover;
-//   filter: grayscale(40%);
-//   width: 100vw;
-//   height: 100vh;
-//   position: fixed;
-//   z-index: -1;
-// }

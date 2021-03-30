@@ -1,8 +1,30 @@
-<div *ngIf="store$| async">
+<!-- <div *ngIf="store$| async">
   <h3>{{ worker.firstName}} {{worker.lastName}}</h3>
 </div>
-<a (click)="onClose()">close</a>
-<ul *ngFor="let template of templates$ | async">
-  <li>{{template.name}} {{template.version}} {{template.description}} <button
-      (click)="onSubmit(template)">Create</button></li>
-</ul>
+<a (click)="onClose()">close</a> -->
+
+
+
+<div class="component-container">
+  <div class="component-header">
+    <div class="header-heading">
+      <div *ngIf="store$| async">
+        <h3>Create New Document</h3>
+      </div>
+    </div>
+  </div>
+  <div class="component-header">
+    <div class="header-buttons">
+      <button (click)="onShowFiles(worker)">Files</button>
+    </div>
+  </div>
+
+
+  <div class="component-main">
+    <ul *ngFor="let template of templates$ | async">
+      <li>{{template.name}} {{template.version}} {{template.description}} <button
+          (click)="onSubmit(template)">Create</button></li>
+    </ul>
+  </div>
+
+</div>

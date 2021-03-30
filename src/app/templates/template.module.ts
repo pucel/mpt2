@@ -8,13 +8,18 @@ import { CreateTemplateComponent } from './create-template/create-template.compo
 import { TemplateRoutingModule } from './template-routing.module';
 import { ListtemplateComponent } from './list-template/list-template.component';
 import { UpdateTemplateComponent } from './update-template/update-template.component';
+import { ContainerTemplateComponent } from './container-template/container-template.component';
+import { primeNgModule } from '../primeng.module';
+import { DetailTemplateComponent } from './detail-template/detail-template.component';
 
 @NgModule({
   declarations: [
     CreateTemplateComponent,
     ListtemplateComponent,
-    UpdateTemplateComponent
+    UpdateTemplateComponent,
+    ContainerTemplateComponent,
+    DetailTemplateComponent
   ],
-  imports: [RouterModule, ReactiveFormsModule, TemplateRoutingModule, CommonModule, UploadFileStoreModule]
+  imports: [RouterModule, ReactiveFormsModule, TemplateRoutingModule, CommonModule, UploadFileStoreModule, primeNgModule]
 })
 export class templateModule { }

@@ -1,6 +1,7 @@
 .form {
   padding-left: 3rem;
   padding-right: 3rem;
+  padding-top: 1rem;
 }
 
 label,
@@ -12,4 +13,10 @@ H4 {
   border: none;
   background-color: white;
   font-weight: 700;
+}
+
+.p-accordion {
+  height: 275px;
+  display: block;
+  overflow: scroll;
 }
