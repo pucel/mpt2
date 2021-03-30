@@ -1,7 +1,48 @@
-<button [routerLink]="['./', 'new']">New template</button>
+<!-- <button [routerLink]="['./', 'new']">New template</button>
 
 <ul *ngFor="let template of templates$ | async">
   <li>{{template.name}} {{template.description}} <button [routerLink]="['./', template._id, 'edit']">Edit</button>
     <button (click)="onDelete(template)">Delete</button>
   </li>
-</ul>
+</ul> -->
+
+
+<div class="component-container">
+  <div class="component-header">
+    <div class="header-heading">
+      <h3>Templates </h3>
+    </div>
+  </div>
+  <div class="component-header">
+    <div class="header-buttons">
+      <button (click)="onNewTemplate()">New Template</button>
+    </div>
+  </div>
+
+  <div class="component-main">
+    <p-scrollPanel [style]="{width: '100%', height: '100%'}">
+      <ul *ngFor="let template of templates$ | async">
+        <li>
+          <section class="package">
+            <a (click)="onDetail(template)">
+              <h1 class="package__title">{{template.name}} {{template.description}}</h1>
+              <h2 class="package__badge">Issue</h2>
+              <h2 class="package__subtitle">Project Manager</h2>
+            </a>
+          </section>
+        </li>
+      </ul>
+    </p-scrollPanel>
+  </div>
+
+</div>
+<!-- <li> <button [routerLink]="['./', template._id, 'edit']">Edit</button>
+  <button (click)="onDelete(template)">Delete</button> -->
+
+
+<!--
+  <p *ngIf="numberOfWorkers$ | async">No workers</p>
+  <ul *ngFor="let worker of workers$ | async">
+
+    </li>
+  </ul> -->

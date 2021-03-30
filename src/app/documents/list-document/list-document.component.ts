@@ -7,6 +7,7 @@ import * as AppState from '../../store/app.reducer';
 import { Worker } from '../../workers/worker.model';
 import { CreatedDocument } from '../createdDocument.model';
 import * as WorkerActions from '../../workers/store/worker.actions';
+import { selectWorkerFeatureState } from 'src/app/workers/store/worker.selector';
 // import { WorkerStatus } from '../../workers/store/worker.reducer';
 
 @Component({
@@ -45,5 +46,9 @@ export class ListDocumentComponent implements OnInit {
 
   onClose() {
     //this.store.dispatch(new WorkerActions.SetWorkerListState(WorkerStatus.Ready))
+  }
+
+  onNewFile() {
+    this.store.dispatch(new WorkerActions.CreateNewDocuments(this.worker));
   }
 }

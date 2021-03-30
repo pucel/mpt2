@@ -1,5 +1,26 @@
-<a (click)="onClose()">close</a>
-<h3 *ngIf="store$ | async"> {{worker.firstName}} {{worker.lastName}} </h3>
-<ul *ngFor="let document of documents$ | async">
-  <li>{{document.filename}}</li>
-</ul>
+<!-- <a (click)="onClose()">close</a>
+<h3 *ngIf="store$ | async"> {{worker.firstName}} {{worker.lastName}} </h3> -->
+
+
+
+
+<div class="component-container">
+  <div class="component-header">
+    <div class="header-heading">
+      <div *ngIf="store$ | async"> </div>
+      <h3>Files</h3>
+    </div>
+  </div>
+  <div class="component-header">
+    <div class="header-buttons">
+      <button (click)="onNewFile()">New File</button>
+    </div>
+  </div>
+
+  <div class="component-main">
+    <ul *ngFor="let document of documents$ | async">
+      <li>{{document.filename}}</li>
+    </ul>
+  </div>
+
+</div>

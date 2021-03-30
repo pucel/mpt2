@@ -4,7 +4,7 @@
       <a (click)="onWorkers()">Workers</a>
     </li>
     <li class="main-nav__item" routerLinkActive="active" *ngIf="isAuthenticated">
-      <a routerLink="/templates">Templates</a>
+      <a (click)="onTemplates()">Templates</a>
     </li>
     <li class="main-nav__item" routerLinkActive="active" *ngIf="!isAuthenticated">
       <a routerLink="/auth">Authenticate</a>

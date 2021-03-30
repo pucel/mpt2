@@ -8,7 +8,6 @@ import * as WorkerActions from '../store/worker.actions';
 import * as TemplateActions from '../../templates/store/template.actions';
 import { Worker } from '../worker.model';
 import { Template } from '../../templates/template.model';
-import { DisplayLeft, DisplayRight } from '../store/worker.reducer';
 
 @Component({
   selector: 'app-doc-worker',
@@ -53,4 +52,10 @@ export class DocWorkerComponent implements OnInit {
   onClose() {
     //this.store.dispatch(new WorkerActions.SetWorkerListState(WorkerStatus.Ready))
   }
+
+  // show component with already created files related to the worker
+  onShowFiles(worker: Worker) {
+    this.store.dispatch(new WorkerActions.ShowWorkersFiles(worker));
+  }
+
 }

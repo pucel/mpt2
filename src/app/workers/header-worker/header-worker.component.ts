@@ -67,6 +67,7 @@ export class HeaderWorkerComponent implements OnInit {
     );
 
 
+
     // this.numberOfWorkers$ = this.store.pipe(
     //   select(fromWorkerSelectors.getWorkersLength)
     // );

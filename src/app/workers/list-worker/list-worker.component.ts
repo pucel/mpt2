@@ -28,11 +28,13 @@ export class ListWorkerComponent implements OnInit {
   detail$: Observable<boolean>;
   isReady$: Observable<boolean>;
   update$: Observable<boolean>;
-  files$: Observable<boolean>;
+
   updateCompleted$: Observable<boolean>;
   createDoc$: Observable<boolean>;
+  files$: Observable<boolean>;
   numberOfWorkers$: Observable<boolean>;
   createWorker$: Observable<boolean>;
+  amountWorkers$: Observable<number>;
 
 
   constructor(private store: Store<AppState.AppState>) { }
@@ -47,32 +49,36 @@ export class ListWorkerComponent implements OnInit {
         workerState => workerState.workers
       ));
 
-    this.workerList$ = this.store.pipe(
-      select(fromWorkerSelectors.showWorkerList)
-    );
+    // this.workerList$ = this.store.pipe(
+    //   select(fromWorkerSelectors.showWorkerList)
+    // );
 
-    this.detail$ = this.store.pipe(
-      select(fromWorkerSelectors.showDetail)
-    );
+    // this.detail$ = this.store.pipe(
+    //   select(fromWorkerSelectors.showDetail)
+    // );
 
-    this.createDoc$ = this.store.pipe(
-      select(fromWorkerSelectors.selectWorkerCreateDoc)
-    );
+    // this.createDoc$ = this.store.pipe(
+    //   select(fromWorkerSelectors.selectWorkerCreateDoc)
+    // );
 
-    this.files$ = this.store.pipe(
-      select(fromWorkerSelectors.selectWorkerShowFiles)
-    );
+    // this.files$ = this.store.pipe(
+    //   select(fromWorkerSelectors.selectWorkerShowFiles)
+    // );
 
-    this.update$ = this.store.pipe(
-      select(fromWorkerSelectors.selectWorkerUpdate)
-    );
+    // this.update$ = this.store.pipe(
+    //   select(fromWorkerSelectors.selectWorkerUpdate)
+    // );
 
     this.numberOfWorkers$ = this.store.pipe(
       select(fromWorkerSelectors.getWorkersLength)
     );
 
-    this.createWorker$ = this.store.pipe(
-      select(fromWorkerSelectors.createWorker)
+    // this.createWorker$ = this.store.pipe(
+    //   select(fromWorkerSelectors.createWorker)
+    // );
+
+    this.amountWorkers$ = this.store.pipe(
+      select(fromWorkerSelectors.amountWorkers)
     );
 
     // this.isReady$ = this.store.pipe(
@@ -140,4 +146,9 @@ export class ListWorkerComponent implements OnInit {
   onDetail(worker: Worker) {
     this.store.dispatch(new WorkerActions.ShowWorkerDetail(worker));
   }
+
+  onNewWorker() {
+    this.store.dispatch(new WorkerActions.CreatingNewWorker());
+  }
+
 }

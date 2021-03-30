@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -21,18 +21,16 @@ export class CreateTemplateComponent {
   templateId: string;
   id$: Observable<boolean>;
 
-  constructor(private store: Store<AppState.AppState>) { }
+  constructor(private store: Store<AppState.AppState>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm() {
-    let name = "";
-    let description = "";
-    this.newTemplateForm = new FormGroup({
-      'name': new FormControl(name, Validators.required),
-      'description': new FormControl(description, Validators.required),
+    this.newTemplateForm = this.fb.group({
+      'name': ['', Validators.required],
+      'description': ['', Validators.required]
     });
   }
 
@@ -46,7 +44,6 @@ export class CreateTemplateComponent {
     )
     this.id$.subscribe();
     // save new template
-    const newtemplate = new Template(this.templateId, this.newTemplateForm.value['name'], 1, this.newTemplateForm.value['description']);
-    this.store.dispatch(new TemplateActions.AddTemplate(newtemplate));
+    this.store.dispatch(new TemplateActions.AddTemplate(<Template>(this.newTemplateForm.value)));
   }
 }

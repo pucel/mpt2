@@ -35,8 +35,17 @@ export class ListtemplateComponent implements OnInit {
   }
 
   onDelete(template: Template) {
-    this.store.dispatch(new TemplateActions.DeleteTemplate(template._id));
+    this.store.dispatch(new TemplateActions.DeleteTemplate(template));
     this.start();
+  }
+
+  onNewTemplate() {
+    this.store.dispatch(new TemplateActions.CreatingNewTemplate());
+  }
+
+
+  onDetail(template: Template) {
+    this.store.dispatch(new TemplateActions.ShowTemplateDetail(template));
   }
 
 }
