@@ -9,10 +9,10 @@ import { ContainerWorkerComponent } from './container-worker/container-worker.co
 
 const routes: Routes = [
   { path: '', component: ContainerWorkerComponent, canActivate: [AuthGuard] },
-  { path: 'new', component: CreateWorkerComponent, canActivate: [AuthGuard] },
-  { path: 'edit', component: UpdateWorkerComponent, canActivate: [AuthGuard] },
-  { path: ':id/edit', component: UpdateWorkerComponent, canActivate: [AuthGuard] },
-  { path: ':id/doc', component: DocWorkerComponent, canActivate: [AuthGuard] },
+  // { path: 'new', component: CreateWorkerComponent, canActivate: [AuthGuard] },
+  // { path: 'edit', component: UpdateWorkerComponent, canActivate: [AuthGuard] },
+  // { path: ':id/edit', component: UpdateWorkerComponent, canActivate: [AuthGuard] },
+  // { path: ':id/doc', component: DocWorkerComponent, canActivate: [AuthGuard] },
 
 ];
 

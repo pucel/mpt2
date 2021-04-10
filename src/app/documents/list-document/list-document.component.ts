@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { async, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import * as DocumentActions from '../store/document.actions';
 import * as AppState from '../../store/app.reducer';
 import { Worker } from '../../workers/worker.model';
-import { CreatedDocument } from '../createdDocument.model';
+import { Document } from '../document.model';
+
 import * as WorkerActions from '../../workers/store/worker.actions';
-import { selectWorkerFeatureState } from 'src/app/workers/store/worker.selector';
-// import { WorkerStatus } from '../../workers/store/worker.reducer';
 
 @Component({
   selector: 'app-list-document',
@@ -17,7 +16,7 @@ import { selectWorkerFeatureState } from 'src/app/workers/store/worker.selector'
 })
 export class ListDocumentComponent implements OnInit {
 
-  documents$: Observable<CreatedDocument[]>;
+  documents$: Observable<Document[]>;
   store$: Observable<Worker>;
   worker: Worker;
 
@@ -50,5 +49,9 @@ export class ListDocumentComponent implements OnInit {
 
   onNewFile() {
     this.store.dispatch(new WorkerActions.CreateNewDocuments(this.worker));
+  }
+
+  onDetail(document) {
+    this.store.dispatch(new WorkerActions.DisplayDocument(document.filePdf));
   }
 }

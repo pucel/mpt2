@@ -17,6 +17,12 @@ const detail = (state: State): boolean =>
 const update = (state: State): boolean =>
   state.displayLeftPanel === DisplayLeft.Update;
 
+const create = (state: State): boolean =>
+  state.displayLeftPanel === DisplayLeft.CreateTemplate;
+
+const file = (state: State): boolean =>
+  state.displayRightPanel === DisplayRight.File;
+
 export const selectTemplateFeatureState: MemoizedSelector<
   object,
   State
@@ -48,4 +54,20 @@ export const ShowTemplateUpdate: MemoizedSelector<
 > = createSelector(
   selectTemplateFeatureState,
   update
+);
+
+export const ShowTemplateFile: MemoizedSelector<
+  object,
+  boolean
+> = createSelector(
+  selectTemplateFeatureState,
+  file
+);
+
+export const CreateTemplate: MemoizedSelector<
+  object,
+  boolean
+> = createSelector(
+  selectTemplateFeatureState,
+  create
 );

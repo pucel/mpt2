@@ -4,7 +4,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 const appRoutes: Routes = [
   //{ path: "", redirectTo: "/workers", pathMatch: "full" },
   {
-    path: "workers",
+    path: "employees",
     loadChildren: () =>
       import("./workers/worker.module").then(m => m.WorkerModule)
   },

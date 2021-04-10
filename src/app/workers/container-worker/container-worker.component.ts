@@ -20,6 +20,7 @@ export class ContainerWorkerComponent implements OnInit {
   update$: Observable<boolean>;
   createDoc$: Observable<boolean>;
   files$: Observable<boolean>;
+  displayDoc$: Observable<boolean>;
 
   ngOnInit(): void {
 
@@ -45,6 +46,10 @@ export class ContainerWorkerComponent implements OnInit {
 
     this.files$ = this.store.pipe(
       select(fromWorkerSelectors.selectWorkerShowFiles)
+    );
+
+    this.displayDoc$ = this.store.pipe(
+      select(fromWorkerSelectors.showDocument)
     );
 
   }

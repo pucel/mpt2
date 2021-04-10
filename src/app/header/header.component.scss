@@ -14,12 +14,12 @@
 }
 
 .main-nav__item {
-  margin: 0 5rem;
+  margin: 0 1rem;
 }
 
 .main-nav__item a {
   text-decoration: none;
-  color: #b6bdc2;
+  // color: #b6bdc2;
   font-weight: bold;
   padding: 0.2rem 0;
 }
@@ -30,16 +30,8 @@
   border-bottom: 2px solid white;
 }
 
-// .main-nav__item--cta a {
-//   color: white;
-//   background: #ff1b68;
-//   padding: 0.5rem 1rem;
-//   border-radius: 8px;
-// }
-
-// .main-nav__item--cta a:hover,
-// .main-nav__item--cta a:active {
-//   color: #ff1b68;
-//   background: white;
-//   border: none;
-// }
+.active {
+  color: white;
+  border-bottom: 3px solid white;
+  font-weight: 700;
+}

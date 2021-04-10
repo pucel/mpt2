@@ -1,14 +1,46 @@
-test
-<div *ngIf="store$| async">
-  <form [formGroup]="updateTemplateForm" (ngSubmit)="onSubmit()" ngIf>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" id="name" class="form-control" formControlName="name">
+<div class="component-container">
+  <div class="component-header">
+    <div class="header-heading">
+      <div *ngIf="store$| async">
+        <h3>Update</h3>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="name">Description</label>
-      <input type="text" id="description" class="form-control" formControlName="description">
+  </div>
+  <div class="component-header">
+    <div class="header-buttons">
+      <div *ngIf="store$| async">
+        <button (click)="FormUpdateTemplate.ngSubmit.emit()">Save</button>
+      </div>
     </div>
-    <button type="submit">Save</button>
-  </form>
+  </div>
+
+
+  <div class="component-main">
+    <div *ngIf="store$| async">
+      <p-scrollPanel [style]="{width: '100%', height: '100%'}">
+        <form [formGroup]="updateTemplateForm" (ngSubmit)="onSubmit()" class="form" #FormUpdateTemplate="ngForm">
+
+          <div class="form-no-accordion">
+            <div class="p-fluid">
+              <!-- <p-fieldset legend="File">
+              <div class="p-field">
+                <app-upload-file></app-upload-file>
+              </div>
+            </p-fieldset> -->
+              <p-fieldset legend="Description">
+                <div class="p-field">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" pInputText class="p-inputtext-sm" formControlName="name">
+                </div>
+                <div class="p-field">
+                  <label for="description">Description</label>
+                  <input type="text" id="description" pInputText class="p-inputtext-sm" formControlName="description">
+                </div>
+              </p-fieldset>
+            </div>
+          </div>
+        </form>
+      </p-scrollPanel>
+    </div>
+  </div>
 </div>

@@ -14,6 +14,8 @@ export class ContainerTemplateComponent implements OnInit {
   showTemplates$: Observable<boolean>;
   showDetail$: Observable<boolean>;
   showUpdate$: Observable<boolean>;
+  file$: Observable<boolean>;
+  create$: Observable<boolean>;
   constructor(private store: Store<AppState.AppState>) { }
 
   ngOnInit(): void {
@@ -25,6 +27,12 @@ export class ContainerTemplateComponent implements OnInit {
     );
     this.showUpdate$ = this.store.pipe(
       select(fromWorkerSelectors.ShowTemplateUpdate)
+    );
+    this.file$ = this.store.pipe(
+      select(fromWorkerSelectors.ShowTemplateFile)
+    );
+    this.create$ = this.store.pipe(
+      select(fromWorkerSelectors.CreateTemplate)
     );
   }
 

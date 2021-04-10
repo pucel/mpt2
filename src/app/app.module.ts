@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { primeNgModule } from './primeng.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,

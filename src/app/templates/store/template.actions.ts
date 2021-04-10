@@ -10,9 +10,7 @@ export const DELETE_TEMPLATE = '[Templates] Delete template';
 export const SET_TEMPLATES = '[Templates] Set templates';
 export const CREATING_NEW_TEMPLATE = '[Templates] Creating New Template';
 export const SHOW_TEMPLATE_DETAIL = '[Templates] Show Template Detail';
-
-
-
+export const SET_TEMPLATE_FILE = '[Templates] Set Template File';
 
 export class FetchTemplates implements Action {
   readonly type = FETCH_TEMPLATES;
@@ -63,6 +61,12 @@ export class ShowTemplateDetail implements Action {
   constructor(public payload: Template) { }
 }
 
+export class SetTemplateFile implements Action {
+  readonly type = SET_TEMPLATE_FILE;
+
+  constructor(public payload: string) { }
+}
+
 
 export type TemplateActions =
   | FetchTemplates
@@ -72,4 +76,5 @@ export type TemplateActions =
   | DeleteTemplate
   | SetTemplates
   | CreatingNewTemplate
-  | ShowTemplateDetail;
+  | ShowTemplateDetail
+  | SetTemplateFile;

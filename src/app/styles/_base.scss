@@ -39,3 +39,54 @@ p,
 li {
   color: $color-background;
 }
+
+.form {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+}
+
+.form-no-accordion {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  background: #ffffff;
+  color: #495057;
+  border-top: 0;
+}
+
+.p-field > label,
+.p-formgroup-inline .p-field > label,
+.p-formgroup-inline .p-field-checkbox > label,
+.p-formgroup-inline .p-field-radiobutton > label {
+  color: $color-primary;
+}
+
+.p-fieldset .p-fieldset-legend {
+  border: none;
+  background-color: white;
+  font-weight: 700;
+}
+
+input[type="file"] {
+  background: $color-background;
+  display: flex;
+  align-items: center;
+
+  border-radius: 5px;
+  height: 2rem;
+  width: auto;
+  font-weight: bold;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+}
+
+input[type="file"]:hover {
+  border: 2px solid $color-background;
+}
+
+.detail_info {
+  color: $color-primary;
+}

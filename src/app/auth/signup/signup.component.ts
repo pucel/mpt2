@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     const password = this.signupForm.value.password;
     this.store.dispatch(new AuthActions.SignupStart({ email: email, password: password }));
     this.signupForm.reset();
-    this.router.navigate(['/workers']);
+    this.router.navigate(['/employees']);
   }
 
   onHandleError() {

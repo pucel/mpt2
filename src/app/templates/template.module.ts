@@ -9,8 +9,12 @@ import { TemplateRoutingModule } from './template-routing.module';
 import { ListtemplateComponent } from './list-template/list-template.component';
 import { UpdateTemplateComponent } from './update-template/update-template.component';
 import { ContainerTemplateComponent } from './container-template/container-template.component';
-import { primeNgModule } from '../primeng.module';
+
 import { DetailTemplateComponent } from './detail-template/detail-template.component';
+import { DisplayTemplateComponent } from './display-template/display-template.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { primeNgModule } from '../primeng.module';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +22,9 @@ import { DetailTemplateComponent } from './detail-template/detail-template.compo
     ListtemplateComponent,
     UpdateTemplateComponent,
     ContainerTemplateComponent,
-    DetailTemplateComponent
+    DetailTemplateComponent,
+    DisplayTemplateComponent
   ],
-  imports: [RouterModule, ReactiveFormsModule, TemplateRoutingModule, CommonModule, UploadFileStoreModule, primeNgModule]
+  imports: [RouterModule, ReactiveFormsModule, TemplateRoutingModule, CommonModule, UploadFileStoreModule, primeNgModule, PdfViewerModule]
 })
 export class templateModule { }

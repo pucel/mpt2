@@ -7,7 +7,8 @@ import * as AuthActions from '../auth/store/auth.actions';
 import * as WorkerActions from '../workers/store/worker.actions';
 import * as TemplateActions from '../templates/store/template.actions';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   user$: Observable<boolean>;
 
   constructor(
-    private store: Store<fromApp.AppState>, private router: Router
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit() {
@@ -28,7 +29,6 @@ export class HeaderComponent implements OnInit {
         this.isAuthenticated = !!authState.user;
         return true;
       }))
-    this.user$.subscribe();
   }
 
   onLogout() {
@@ -37,11 +37,13 @@ export class HeaderComponent implements OnInit {
 
   onWorkers() {
     this.store.dispatch(new WorkerActions.FetchWorkers());
-    this.router.navigate(["/workers"]);
   }
   onTemplates() {
     this.store.dispatch(new TemplateActions.FetchTemplates());
-    this.router.navigate(["/templates"]);
   }
+
+
+
+
 }
 

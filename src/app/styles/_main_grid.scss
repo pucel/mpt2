@@ -52,12 +52,16 @@
   grid-area: component-main-right;
 }
 
+// main {
+//   height: calc(98vh - 180px);
+// }
+
 .component-container {
   margin: 3px;
   height: 1fr;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 60px calc(98vh - 180px);
+  grid-template-rows: 60px calc(98vh - 170px);
   grid-template-areas:
     "component-header"
     "component-main";
@@ -72,6 +76,7 @@
   grid-area: component-main;
   height: auto;
   overflow: auto;
+  margin-top: 5px;
 }
 
 .header-buttons {

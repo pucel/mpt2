@@ -17,6 +17,8 @@ export const SHOW_WORKERS_FILES = '[Workers] Show Workers Files';
 export const CREATE_NEW_DOCUMENTS = '[Workers] Create New Documents';
 export const SHOW_WORKER_DETAIL = '[Workers] Show Worker Detail';
 export const CREATING_NEW_WORKER = '[Workers] Creating New Worker';
+export const DISPLAY_DOCUMENT = '[Workers] Display Worker Document';
+
 
 export class FetchWorkers implements Action {
   readonly type = FETCH_WORKERS;
@@ -110,6 +112,11 @@ export class ShowWorkerDetail implements Action {
   constructor(public payload: Worker) { }
 }
 
+export class DisplayDocument implements Action {
+  readonly type = DISPLAY_DOCUMENT;
+
+  constructor(public payload: string) { }
+}
 
 
 
@@ -127,4 +134,5 @@ export type WorkerActions =
   | EditWorker
   | ShowWorkersFiles
   | CreateNewDocuments
-  | ShowWorkerDetail;
+  | ShowWorkerDetail
+  | DisplayDocument;

@@ -1,7 +1,7 @@
 <div class="component-container">
   <div class="component-header">
     <div class="header-heading">
-      <h3>Workers ({{amountWorkers$ | async}})</h3>
+      <h3>Employees ({{amountWorkers$ | async}})</h3>
     </div>
   </div>
   <div class="component-header">
@@ -17,37 +17,13 @@
         <li>
           <section class="package">
             <a (click)="onDetail(worker)">
-              <h1 class="package__title">{{worker.firstName}} {{worker.lastName}}</h1>
-              <h2 class="package__badge">Issue</h2>
-              <h2 class="package__subtitle">Project Manager</h2>
+              <h1 class="package__title">{{worker.mainData.firstName}} {{worker.mainData.lastName}}</h1>
+              <!-- <h2 class="package__badge">Issue</h2> -->
+              <h2 class="package__subtitle">{{worker.contractData.position}}</h2>
             </a>
           </section>
         </li>
       </ul>
     </p-scrollPanel>
   </div>
-
 </div>
-
-<!--
-
-<div class="worker-main-left" *ngIf="createWorker$ | async">
-  <app-create-worker></app-create-worker>
-</div>
-<div class="worker-main-right" *ngIf="files$ | async">
-  <app-list-document></app-list-document>
-</div>
-<div class="worker-main-right" *ngIf="createDoc$ | async">
-  <app-doc-worker></app-doc-worker>
-</div>
-<div class="worker-main-left" *ngIf="update$ | async">
-  <app-update-worker></app-update-worker>
-</div> -->
-<!-- </div> -->
-
-
-
-<!-- <button (click)="onEdit(worker)">Edit</button>
-        <button (click)="onCreateDoc(worker)">New Document</button>
-        <button (click)="onDelete(worker)">Delete</button>
-        <button (click)="onShowFiles(worker)">Files</button> -->
