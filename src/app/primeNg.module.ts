@@ -9,6 +9,9 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { AccordionModule } from 'primeng/accordion'
 import { FieldsetModule } from 'primeng/fieldset';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { ToastModule } from 'primeng/toast';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { MenuItem } from 'primeng/api';
 
 @NgModule({
   imports: [
@@ -20,7 +23,10 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     InputMaskModule,
     AccordionModule,
     FieldsetModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ToastModule,
+    TabMenuModule,
+
   ],
   exports: [
     InputTextModule,
@@ -31,7 +37,9 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     InputMaskModule,
     AccordionModule,
     FieldsetModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ToastModule,
+    TabMenuModule
   ]
 })
 

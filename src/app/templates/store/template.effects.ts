@@ -41,6 +41,24 @@ export class TemplateEffects {
     })
   );
 
+  @Effect()
+  createDoc = this.actions$.pipe(
+    ofType(TemplateActions.SHOW_TEMPLATE_DETAIL),
+    switchMap((actionData) => {
+      return this.http.put<Blob>(
+        'http://localhost:5000/gettemplate', actionData, { responseType: 'blob' as 'json' }
+      );
+    }),
+    map(downloadedDoc => {
+      const blob = new Blob([downloadedDoc], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const url = window.URL.createObjectURL(blob);
+      return new TemplateActions.SetTemplateFile(url);
+      //window.open(url);
+    })
+  )
+
+
+
   // @Effect({ dispatch: false })
   // updatedWorker = this.actions$.pipe(ofType(templateActions.UPDATE_WORKER),
   //   switchMap((actionData) => {

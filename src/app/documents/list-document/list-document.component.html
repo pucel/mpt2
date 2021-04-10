@@ -18,9 +18,18 @@
   </div>
 
   <div class="component-main">
-    <ul *ngFor="let document of documents$ | async">
-      <li>{{document.filename}}</li>
-    </ul>
+    <p-scrollPanel [style]="{width: '100%', height: '100%'}">
+      <ul *ngFor="let document of documents$ | async">
+        <li>
+          <section class="package">
+            <a (click)="onDetail(document)">
+              <h1 class="package__title">{{document.filePdf}}</h1>
+              <h2 class="package__subtitle">{{document.name}}</h2>
+            </a>
+          </section>
+        </li>
+      </ul>
+    </p-scrollPanel>
   </div>
 
 </div>

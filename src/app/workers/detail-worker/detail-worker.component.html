@@ -2,7 +2,7 @@
   <div class="component-header">
     <div class="header-heading">
       <div *ngIf="store$|async">
-        <h3>{{worker.firstName}} {{worker.lastName}} Detail</h3>
+        <h3>{{worker.mainData.firstName}} {{worker.mainData.lastName}}</h3>
       </div>
     </div>
   </div>
@@ -11,5 +11,168 @@
       <button (click)="onDelete(worker)">Delete</button>
       <button (click)="onEdit(worker)">Edit</button>
     </div>
+  </div>
+  <div class="component-main">
+
+    <p-scrollPanel [style]="{width: '100%', height: 'auto'}" styleClass="custombar1">
+      <div class="form">
+        <p-accordion>
+          <p-accordionTab header="Personal Info" [selected]="true">
+            <ng-template pTemplate="content">
+              <div class="p-fluid">
+                <p-fieldset legend="Name">
+                  <h3 class="detail_info">{{worker.mainData.firstName}} {{worker.mainData.middleName}}
+                    {{worker.mainData.lastName}}</h3>
+                </p-fieldset>
+                <p-fieldset legend="Gender">
+                  <div class="p-formgroup-inline">
+                    <h3 class="detail_info">{{worker.mainData.gender}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Citizenship">
+                  <div class="p-formgroup-inline">
+                    <h3 class="detail_info">{{worker.mainData.citizenship}} {{worker.mainData.country.name}}</h3>
+                  </div>
+
+                </p-fieldset>
+                <p-fieldset legend="Birth Data">
+                  <h3 class="detail_info">{{worker.mainData.dateOfBirth | date:'longDate'}}</h3>
+                  <div *ngIf="worker.mainData.citizenship === 'czech'">
+                    <h3 class="detail_info">{{worker.mainData.bornNumber}}</h3>
+                  </div>
+                </p-fieldset>
+              </div>
+            </ng-template>
+          </p-accordionTab>
+          <p-accordionTab header="Contact Info">
+            <ng-template pTemplate="content">
+              <div class="p-fluid">
+                <p-fieldset legend="Permanent Address">
+                  <div class="p-field">
+                    <h3 class="detail_info">
+                      {{worker.address.street}}
+                      {{worker.address.city}}
+                      {{worker.address.zip}}
+                      {{worker.address.countryAddress.name}} </h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Contact Address">
+                  <div class="p-field">
+                    <h3 class="detail_info">
+                      {{worker.contactAddress.streetContact}}
+                      {{worker.contactAddress.cityContact}}
+                      {{worker.contactAddress.zipContact}}
+                      {{worker.contactAddress.countryAddressContact.name}} </h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Contact Work">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contactData.emailWork}}</h3>
+                    <h3 class="detail_info">{{worker.contactData.phoneWork}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Contact Private">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contactData.emailPrivate}}</h3>
+                    <h3 class="detail_info">{{worker.contactData.phonePrivate}}</h3>
+                    <h3 class="detail_info">{{worker.contactData.facebook}}</h3>
+                    <h3 class="detail_info">{{worker.contactData.linkedIn}}</h3>
+                  </div>
+                </p-fieldset>
+              </div>
+            </ng-template>
+          </p-accordionTab>
+          <p-accordionTab header="Other Information">
+            <ng-template pTemplate="content">
+              <div class="p-fluid">
+                <p-fieldset legend="Bank Data">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.bankData.bank}}
+                      {{worker.bankData.bankAccountNumber}}/{{worker.bankData.bankCode.name}}</h3>
+                    <h3 class="detail_info">{{worker.bankData.iban}} {{worker.bankData.swift}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Health Insurance">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.bankData.healthInsurance.name}}</h3>
+                  </div>
+                </p-fieldset>
+
+              </div>
+            </ng-template>
+          </p-accordionTab>
+
+
+
+          <p-accordionTab header="Contract">
+            <ng-template pTemplate="content">
+              <div class="p-fluid">
+                <p-fieldset legend="Contract Type">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.contractType}}</h3>
+                  </div>
+                </p-fieldset>
+
+                <p-fieldset legend="Start of Cooperation">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.dateOfCooperation | date:'fullDate'}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Capacity">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.capacity}} {{worker.contractData.capacityOther}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Salary">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.salary}}</h3>
+                    <h3 class="detail_info">{{worker.contractData.salaries.salaryChange}}
+                      {{worker.contractData.salaries.salaryChangeDate}},
+                      {{worker.contractData.fixSalaryAmount}},
+                      {{worker.contractData.fixVariableSalary}},
+                      {{worker.contractData.salaryPerHour}}
+                    </h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Contract Limitation">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.limitation}} {{worker.contractData.dateLimitation}}
+                    </h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Role">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.position}} {{worker.contractData.team}}
+                      {{worker.contractData.manager}}
+                      {{worker.contractData.seat}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Accounting">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.costCenter}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Active Trading Licence This Year">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.activeTradingLicence}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Last Day by Ex-Employer">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.exEmployer}}</h3>
+                  </div>
+                </p-fieldset>
+                <p-fieldset legend="Student">
+                  <div class="p-field">
+                    <h3 class="detail_info">{{worker.contractData.student}}</h3>
+                  </div>
+                </p-fieldset>
+
+              </div>
+            </ng-template>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </p-scrollPanel>
   </div>
 </div>

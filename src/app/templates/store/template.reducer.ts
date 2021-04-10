@@ -9,7 +9,7 @@ export enum DisplayLeft {
   // UpdateCompleted = 'UpdateCompleted',
   // CreateDoc = 'CreateDoc',
   Detail = 'Detail',
-  // Workers = 'Workers',
+  Create = 'Create',
   CreateTemplate = 'CreateTemplate'
 }
 
@@ -21,7 +21,8 @@ export enum DisplayRight {
   // CreateDoc = 'CreateDoc',
   // Detail = 'Detail',
   // Workers = 'Workers',
-  Nothing = 'Nothing'
+  Nothing = 'Nothing',
+  File = 'File'
 }
 
 
@@ -30,17 +31,16 @@ export interface State {
   currentTemplate: Template;
   displayLeftPanel: DisplayLeft;
   displayRightPanel: DisplayRight;
+  templateFile: string;
 }
 
 const initialState: State = {
   templates: [],
   currentTemplate: null,
   displayLeftPanel: DisplayLeft.Templates,
-  displayRightPanel: DisplayRight.Nothing
+  displayRightPanel: DisplayRight.Nothing,
+  templateFile: null
 }
-
-
-
 
 export function templateReducer(
   state = initialState,
@@ -61,7 +61,9 @@ export function templateReducer(
     case TemplateActions.ADD_TEMPLATE:
       return {
         ...state,
-        templates: [...state.templates, action.payload]
+        templates: [...state.templates, action.payload],
+        displayLeftPanel: DisplayLeft.Templates,
+        displayRightPanel: DisplayRight.Nothing
       };
     case TemplateActions.CREATING_NEW_TEMPLATE:
       return {
@@ -72,13 +74,20 @@ export function templateReducer(
       return {
         ...state,
         currentTemplate: action.payload,
-        displayLeftPanel: DisplayLeft.Detail
+        displayLeftPanel: DisplayLeft.Detail,
+        displayRightPanel: DisplayRight.File
       };
     case TemplateActions.UPDATE_TEMPLATE:
       return {
         ...state,
         currentTemplate: action.payload,
-        displayLeftPanel: DisplayLeft.Update
+        displayLeftPanel: DisplayLeft.Update,
+        displayRightPanel: DisplayRight.File
+      };
+    case TemplateActions.SET_TEMPLATE_FILE:
+      return {
+        ...state,
+        templateFile: action.payload
       };
     default:
       return state;

@@ -25,7 +25,9 @@
     <div *ngIf="createDoc$ | async">
       <app-doc-worker></app-doc-worker>
     </div>
-
+    <div *ngIf="displayDoc$ | async">
+      <app-display-document></app-display-document>
+    </div>
 
 
 

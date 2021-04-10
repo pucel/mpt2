@@ -1,7 +1,8 @@
 <div class="component-container">
+
   <div class="component-header">
     <div class="header-heading">
-      <h3>Create Worker</h3>
+      <h3>Create Employee</h3>
     </div>
   </div>
   <div class="component-header">
@@ -10,440 +11,481 @@
     </div>
   </div>
 
-
   <div class="component-main">
-    <p-scrollPanel [style]="{width: '100%', height: '100%'}">
-
-
-      <form class="form" [formGroup]="newWorkerForm" (ngSubmit)="onSubmit()" #FormNewWorker="ngForm"
-        style="width:100%;">
+    <p-scrollPanel [style]="{width: '100%', height: 'auto'}" styleClass="custombar1">
+      <form class="form" [formGroup]="newWorkerForm" (ngSubmit)="onSubmit()" #FormNewWorker="ngForm">
         <p-accordion>
           <p-accordionTab header="Personal Info" [selected]="true">
             <ng-template pTemplate="content">
-              <div class="p-fluid">
-                <p-fieldset legend="Names">
-                  <div class="p-field">
-                    <label for="firstName">First Name</label>
-                    <input id="firstName" type="text" pInputText class="p-inputtext-sm" formControlName="firstName">
-                  </div>
-                  <div class="p-field">
-                    <label for="lastName">Last Name</label>
-                    <input id="lastName" type="text" pInputText class="p-inputtext-sm" formControlName="lastName">
-                  </div>
-                  <div class="p-field">
-                    <label for="middleName">Middle Name</label>
-                    <input id="middleName" type="text" pInputText class="p-inputtext-sm" formControlName="middleName">
-                  </div>
-                </p-fieldset>
-                <p-fieldset legend="Gender">
-                  <div class="p-formgroup-inline">
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="gender" value="Man" inputId="man" formControlName="gender"></p-radioButton>
-                      <label for="man">Man</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="gender" value="Woman" inputId="woman" formControlName="gender">
-                      </p-radioButton>
-                      <label for="woman">Woman</label>
-                    </div>
-                  </div>
-                </p-fieldset>
-
-                <p-fieldset legend="Citizenship">
-                  <div class="p-formgroup-inline">
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="citizenship" value="czech" inputId="czech" formControlName="citizenship">
-                      </p-radioButton>
-                      <label for="czech">Czech</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="citizenship" value="eu" inputId="eu" formControlName="citizenship">
-                      </p-radioButton>
-                      <label for="eu">EU</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="citizenship" value="nonEu" inputId="nonEu" formControlName="citizenship">
-                      </p-radioButton>
-                      <label for="nonEu">Non EU</label>
-                    </div>
-                  </div>
-                  <div
-                    *ngIf="newWorkerForm.controls.citizenship.value === 'eu' || newWorkerForm.controls.citizenship.value === 'nonEu'">
+              <div formGroupName="mainData">
+                <div class="p-fluid">
+                  <p-fieldset legend="Names">
                     <div class="p-field">
-                      <label for="countryCitizenship">Country</label>
-                      <p-dropdown id="countryCitizenship" [options]="countries" placeholder="Select a Country"
-                        optionLabel="name" [showClear]="true" [filter]="true" filterBy="name" formControlName="country">
-                      </p-dropdown>
+                      <label for="firstName">First Name</label>
+                      <input id="firstName" type="text" pInputText class="p-inputtext-sm" formControlName="firstName">
                     </div>
-
-                  </div>
-                </p-fieldset>
-                <p-fieldset legend="Birth Data">
-                  <div class="p-field">
-                    <label for="dateOfBirth">Date of Birth</label>
-                    <p-calendar inputId="dateOfBirth" class="p-inputtext-sm" formControlName="dateOfBirth"
-                      [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2030" inputId="navigators">
-                    </p-calendar>
-                  </div>
-                  <div *ngIf="newWorkerForm.controls.citizenship.value === 'czech' ">
                     <div class="p-field">
-                      <label for="bornNumber">Born Number</label>
-                      <input id="bornNumber" type="text" pInputText class="p-inputtext-sm" formControlName="bornNumber">
+                      <label for="lastName">Last Name</label>
+                      <input id="lastName" type="text" pInputText class="p-inputtext-sm" formControlName="lastName">
                     </div>
-                  </div>
-                </p-fieldset>
+                    <div class="p-field">
+                      <label for="middleName">Middle Name</label>
+                      <input id="middleName" type="text" pInputText class="p-inputtext-sm" formControlName="middleName">
+                    </div>
+                  </p-fieldset>
+                  <p-fieldset legend="Gender">
+                    <div class="p-formgroup-inline">
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="gender" value="Man" inputId="man" formControlName="gender"></p-radioButton>
+                        <label for="man">Man</label>
+                      </div>
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="gender" value="Woman" inputId="woman" formControlName="gender">
+                        </p-radioButton>
+                        <label for="woman">Woman</label>
+                      </div>
+                    </div>
+                  </p-fieldset>
+                  <p-fieldset legend="Citizenship">
+                    <div class="p-formgroup-inline">
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="citizenship" value="czech" inputId="czech" formControlName="citizenship">
+                        </p-radioButton>
+                        <label for="czech">Czech</label>
+                      </div>
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="citizenship" value="eu" inputId="eu" formControlName="citizenship">
+                        </p-radioButton>
+                        <label for="eu">EU</label>
+                      </div>
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="citizenship" value="nonEu" inputId="nonEu" formControlName="citizenship">
+                        </p-radioButton>
+                        <label for="nonEu">Non EU</label>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="newWorkerForm.get('mainData').get('citizenship').value === 'eu' || newWorkerForm.get('mainData').get('citizenship').value === 'nonEu'">
+                      <div class="p-field">
+                        <label for="countryCitizenship">Country</label>
+                        <p-dropdown id="countryCitizenship" [options]="countries" placeholder="Select a Country"
+                          optionLabel="name" [showClear]="true" [filter]="true" filterBy="name"
+                          formControlName="country">
+                        </p-dropdown>
+                      </div>
+                    </div>
+                  </p-fieldset>
+                  <p-fieldset legend="Birth Data">
+                    <div class="p-field">
+                      <label for="dateOfBirth">Date of Birth</label>
+                      <p-calendar inputId="dateOfBirth" class="p-inputtext-sm" formControlName="dateOfBirth"
+                        [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2030" inputId="navigators">
+                      </p-calendar>
+                    </div>
+                    <div *ngIf="newWorkerForm.get('mainData').get('citizenship').value === 'czech'">
+                      <div class="p-field">
+                        <label for="bornNumber">Born Number</label>
+                        <input id="bornNumber" type="text" pInputText class="p-inputtext-sm"
+                          formControlName="bornNumber">
+                      </div>
+                    </div>
+                  </p-fieldset>
+                </div>
               </div>
             </ng-template>
           </p-accordionTab>
-
           <p-accordionTab header="Contact Info">
             <ng-template pTemplate="content">
               <div class="p-fluid">
                 <p-fieldset legend="Permanent Address">
-                  <div class="p-field">
-                    <label for="street">Street</label>
-                    <input id="street" type="text" pInputText class="p-inputtext-sm" formControlName="street">
-                  </div>
-                  <div class="p-field">
-                    <label for="city">City</label>
-                    <input id="city" type="text" pInputText class="p-inputtext-sm" formControlName="city">
-                  </div>
-                  <div class="p-field">
-                    <label for="zip">ZIP Code</label>
-                    <input id="zip" type="text" pInputText class="p-inputtext-sm" formControlName="zip">
-                  </div>
-                  <div class="p-field">
-                    <label for="countryAddress">Country</label>
-                    <p-dropdown id="countryAddress" [options]="countries" placeholder="Select a Country"
-                      optionLabel="name" [showClear]="true" [filter]="true" filterBy="name"
-                      formControlName="countryAddress">
-                    </p-dropdown>
-                  </div>
-                </p-fieldset>
-                <p-fieldset legend="Contact Address">
-                  <div class="p-field">
-                    <label for="streetContact">Street</label>
-                    <input id="streetContact" type="text" pInputText class="p-inputtext-sm"
-                      formControlName="streetContact">
-                  </div>
-                  <div class="p-field">
-                    <label for="cityContact">City</label>
-                    <input id="cityContact" type="text" pInputText class="p-inputtext-sm" formControlName="cityContact">
-                  </div>
-                  <div class="p-field">
-                    <label for="zipContact">ZIP Code</label>
-                    <input id="zipContact" type="text" pInputText class="p-inputtext-sm" formControlName="zipContact">
-                  </div>
-                  <div class="p-field">
-                    <label for="countryAddressContact">Country</label>
-                    <p-dropdown id="countryAddressContact" [options]="countries" placeholder="Select a Country"
-                      optionLabel="name" [showClear]="true" [filter]="true" filterBy="name"
-                      formControlName="countryAddressContact">
-                    </p-dropdown>
-                  </div>
-                </p-fieldset>
-                <p-fieldset legend="Contact">
-                  <div class="p-field">
-                    <label for="phone">Phone</label>
-                    <input id="phone" type="text" pInputText class="p-inputtext-sm" formControlName="phone">
-                  </div>
-                  <div class="p-field">
-                    <label for="email">Email</label>
-                    <input id="email" type="text" pInputText class="p-inputtext-sm" formControlName="email">
-                  </div>
-                  <div class="p-field">
-                    <label for="linkedIn">LinkedIn</label>
-                    <input id="linkedIn" type="text" pInputText class="p-inputtext-sm" formControlName="linkedIn">
-                  </div>
-                  <div class="p-field">
-                    <label for="facebook">Facebook</label>
-                    <input id="facebook" type="text" pInputText class="p-inputtext-sm" formControlName="facebook">
-                  </div>
-                </p-fieldset>
-              </div>
-            </ng-template>
-          </p-accordionTab>
-
-
-          <p-accordionTab header="Other Information">
-            <ng-template pTemplate="content">
-              <div class="p-fluid">
-                <p-fieldset legend="Bank Data">
-                  <div class="p-formgroup-inline">
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="bank" value="czech" inputId="czech" formControlName="bank">
-                      </p-radioButton>
-                      <label for="bankAccountCzech">Czech</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="bank" value="noCzech" inputId="eu" formControlName="bank">
-                      </p-radioButton>
-                      <label for="bankAccountForeign">No czech bank account</label>
-                    </div>
-                  </div>
-                  <div *ngIf="newWorkerForm.controls.bank.value === 'czech'">
+                  <div formGroupName="address">
                     <div class="p-field">
-                      <label for="bankAccountNumber">Account Number</label>
-                      <input id="bankAccountNumber" type="text" pInputText class="p-inputtext-sm"
-                        formControlName="bankAccountNumber">
+                      <label for="street">Street</label>
+                      <input id="street" type="text" pInputText class="p-inputtext-sm" formControlName="street">
                     </div>
                     <div class="p-field">
-                      <label for="bankCode">Banks</label>
-                      <p-dropdown id="bankCode" [options]="banks" placeholder="Select a Bank" optionLabel="name"
-                        [showClear]="true" [filter]="true" filterBy="name" formControlName="bankCode">
+                      <label for="city">City</label>
+                      <input id="city" type="text" pInputText class="p-inputtext-sm" formControlName="city">
+                    </div>
+                    <div class="p-field">
+                      <label for="zip">ZIP Code</label>
+                      <input id="zip" type="text" pInputText class="p-inputtext-sm" formControlName="zip">
+                    </div>
+                    <div class="p-field">
+                      <label for="countryAddress">Country</label>
+                      <p-dropdown id="countryAddress" [options]="countries" placeholder="Select a Country"
+                        optionLabel="name" [showClear]="true" [filter]="true" filterBy="name"
+                        formControlName="countryAddress">
                       </p-dropdown>
                     </div>
                   </div>
-                  <div *ngIf="newWorkerForm.controls.bank.value === 'noCzech'">
+                </p-fieldset>
+                <p-fieldset legend="Contact Address">
+                  <div formGroupName="contactAddress">
                     <div class="p-field">
-                      <label for="iban">IBAN</label>
-                      <input id="iban" type="text" pInputText class="p-inputtext-sm" formControlName="iban">
+                      <label for="streetContact">Street</label>
+                      <input id="streetContact" type="text" pInputText class="p-inputtext-sm"
+                        formControlName="streetContact">
                     </div>
                     <div class="p-field">
-                      <label for="swift">SWIFT</label>
-                      <input id="swift" type="text" pInputText class="p-inputtext-sm" formControlName="swift">
+                      <label for="cityContact">City</label>
+                      <input id="cityContact" type="text" pInputText class="p-inputtext-sm"
+                        formControlName="cityContact">
+                    </div>
+                    <div class="p-field">
+                      <label for="zipContact">ZIP Code</label>
+                      <input id="zipContact" type="text" pInputText class="p-inputtext-sm" formControlName="zipContact">
+                    </div>
+                    <div class="p-field">
+                      <label for="countryAddressContact">Country</label>
+                      <p-dropdown id="countryAddressContact" [options]="countries" placeholder="Select a Country"
+                        optionLabel="name" [showClear]="true" [filter]="true" filterBy="name"
+                        formControlName="countryAddressContact">
+                      </p-dropdown>
                     </div>
                   </div>
                 </p-fieldset>
-                <p-fieldset legend="Health Insurance">
-                  <div class="p-field">
-                    <p-dropdown id="healthInsurance" [options]="banks" placeholder="Select a Bank" optionLabel="name"
-                      [showClear]="true" [filter]="true" filterBy="name" formControlName="healthInsurance">
-                    </p-dropdown>
+                <p-fieldset legend="Contact">
+                  <div formGroupName="contactData">
+                    <div class="p-field">
+                      <label for="phoneWork">Phone Work</label>
+                      <input id="phoneWork" type="text" pInputText class="p-inputtext-sm" formControlName="phoneWork">
+                    </div>
+                    <div class="p-field">
+                      <label for="phonePrivate">Phone Private</label>
+                      <input id="phonePrivate" type="text" pInputText class="p-inputtext-sm"
+                        formControlName="phonePrivate">
+                    </div>
+                    <div class="p-field">
+                      <label for="emailWork">Email Work</label>
+                      <input id="emailWork" type="text" pInputText class="p-inputtext-sm" formControlName="emailWork">
+                    </div>
+                    <div class="p-field">
+                      <label for="emailPrivate">Email Private</label>
+                      <input id="emailPrivate" type="text" pInputText class="p-inputtext-sm"
+                        formControlName="emailPrivate">
+                    </div>
+                    <div class="p-field">
+                      <label for="linkedIn">LinkedIn</label>
+                      <input id="linkedIn" type="text" pInputText class="p-inputtext-sm" formControlName="linkedIn">
+                    </div>
+                    <div class="p-field">
+                      <label for="facebook">Facebook</label>
+                      <input id="facebook" type="text" pInputText class="p-inputtext-sm" formControlName="facebook">
+                    </div>
                   </div>
                 </p-fieldset>
               </div>
             </ng-template>
           </p-accordionTab>
-
-          <p-accordionTab header="Contract">
+          <p-accordionTab header="Other Information">
             <ng-template pTemplate="content">
-              <div class="p-fluid">
-                <p-fieldset legend="Contract Type">
-                  <div class="p-formgroup-inline">
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="contractType" value="employment" inputId="employment"
-                        formControlName="contractType">
-                      </p-radioButton>
-                      <label for="bankAccountCzech">Employment</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="contractType" value="workAgreement" inputId="workAgreement"
-                        formControlName="contractType">
-                      </p-radioButton>
-                      <label for="bankAccountForeign">Work Agreement</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="contractType" value="activityAgreement" inputId="activityAgreement"
-                        formControlName="contractType">
-                      </p-radioButton>
-                      <label for="bankAccountForeign">Work Activity Agreement</label>
-                    </div>
-                  </div>
-                  <div class="p-field">
-                    <label for="dateOfBirth">Start of Cooperation</label>
-                    <p-calendar inputId="dateOfCooperation" class="p-inputtext-sm" formControlName="dateOfCooperation"
-                      [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
-                    </p-calendar>
-                  </div>
-                </p-fieldset>
-                <div *ngIf="newWorkerForm.controls.contractType.value === 'employment'">
-                  <p-fieldset legend="Capacity">
+              <div formGroupName="bankData">
+                <div class="p-fluid">
+                  <p-fieldset legend="Bank Data">
                     <div class="p-formgroup-inline">
                       <div class="p-field-checkbox">
-                        <p-radioButton name="capacity" value="fullTime" inputId="fullTime" formControlName="capacity">
+                        <p-radioButton name="bank" value="czech" inputId="czech" formControlName="bank">
                         </p-radioButton>
-                        <label for="capacity">Full Time</label>
+                        <label for="bankAccountCzech">Czech</label>
                       </div>
                       <div class="p-field-checkbox">
-                        <p-radioButton name="capacity" value="partTime" inputId="partTime" formControlName="capacity">
+                        <p-radioButton name="bank" value="noCzech" inputId="eu" formControlName="bank">
                         </p-radioButton>
-                        <label for="capacity">Part Time</label>
-                      </div>
-                      <div class="p-field-checkbox">
-                        <p-radioButton name="capacity" value="other" inputId="other" formControlName="capacity">
-                        </p-radioButton>
-                        <label for="capacity">Other</label>
+                        <label for="bankAccountForeign">No czech bank account</label>
                       </div>
                     </div>
-                    <div *ngIf="newWorkerForm.controls.capacity.value === 'other'">
+                    <div *ngIf="newWorkerForm.get('bankData').get('bank').value === 'czech'">
                       <div class="p-field">
-                        <label for="capacityOther">Capacity</label>
-                        <input id="capacityOther" type="text" pInputText class="p-inputtext-sm"
-                          formControlName="capacityOther">
+                        <label for="bankAccountNumber">Account Number</label>
+                        <input id="bankAccountNumber" type="text" pInputText class="p-inputtext-sm"
+                          formControlName="bankAccountNumber">
+                      </div>
+                      <div class="p-field">
+                        <label for="bankCode">Banks</label>
+                        <p-dropdown id="bankCode" [options]="banks" placeholder="Select a Bank" optionLabel="name"
+                          [showClear]="true" [filter]="true" filterBy="name" formControlName="bankCode">
+                        </p-dropdown>
+                      </div>
+                    </div>
+                    <div *ngIf="newWorkerForm.get('bankData').get('bank').value === 'noCzech'">
+                      <div class="p-field">
+                        <label for="iban">IBAN</label>
+                        <input id="iban" type="text" pInputText class="p-inputtext-sm" formControlName="iban">
+                      </div>
+                      <div class="p-field">
+                        <label for="swift">SWIFT</label>
+                        <input id="swift" type="text" pInputText class="p-inputtext-sm" formControlName="swift">
                       </div>
                     </div>
                   </p-fieldset>
+                  <p-fieldset legend="Health Insurance">
+                    <div class="p-field">
+                      <p-dropdown id="healthInsurance" [options]="banks" placeholder="Select a Bank" optionLabel="name"
+                        [showClear]="true" [filter]="true" filterBy="name" formControlName="healthInsurance">
+                      </p-dropdown>
+                    </div>
+                  </p-fieldset>
                 </div>
-
-                <div *ngIf="newWorkerForm.controls.contractType.value === 'employment'">
-                  <p-fieldset legend="Salary">
+              </div>
+            </ng-template>
+          </p-accordionTab>
+          <p-accordionTab header="Contract">
+            <ng-template pTemplate="content">
+              <div formGroupName="contractData">
+                <div class="p-fluid">
+                  <p-fieldset legend="Contract Type">
                     <div class="p-formgroup-inline">
                       <div class="p-field-checkbox">
-                        <p-radioButton name="salary" value="fixSalary" inputId="fixSalary" formControlName="salary">
+                        <p-radioButton name="contractType" value="employment" inputId="employment"
+                          formControlName="contractType">
                         </p-radioButton>
-                        <label for="fixSalary">Full Time</label>
+                        <label for="bankAccountCzech">Employment</label>
                       </div>
                       <div class="p-field-checkbox">
-                        <p-radioButton name="salary" value="graduatedFix" inputId="graduatedFix"
-                          formControlName="salary">
+                        <p-radioButton name="contractType" value="workAgreement" inputId="workAgreement"
+                          formControlName="contractType">
                         </p-radioButton>
-                        <label for="graduatedFix">Graduated Fix</label>
+                        <label for="bankAccountForeign">Work Agreement</label>
                       </div>
                       <div class="p-field-checkbox">
-                        <p-radioButton name="salary" value="fixVariable" inputId="fixVariable" formControlName="salary">
+                        <p-radioButton name="contractType" value="activityAgreement" inputId="activityAgreement"
+                          formControlName="contractType">
                         </p-radioButton>
-                        <label for="fixVariable">Fix + Variable part</label>
+                        <label for="bankAccountForeign">Work Activity Agreement</label>
                       </div>
                     </div>
-                    <div *ngIf="newWorkerForm.controls.salary.value === 'fixSalary'">
+                    <div class="p-field">
+                      <label for="dateOfBirth">Start of Cooperation</label>
+                      <p-calendar inputId="dateOfCooperation" class="p-inputtext-sm" formControlName="dateOfCooperation"
+                        [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+                      </p-calendar>
+                    </div>
+                  </p-fieldset>
+                  <div *ngIf="newWorkerForm.get('contractData').get('contractType').value === 'employment'">
+                    <p-fieldset legend="Capacity">
+                      <div class="p-formgroup-inline">
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="capacity" value="fullTime" inputId="fullTime" formControlName="capacity">
+                          </p-radioButton>
+                          <label for="capacity">Full Time</label>
+                        </div>
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="capacity" value="partTime" inputId="partTime" formControlName="capacity">
+                          </p-radioButton>
+                          <label for="capacity">Part Time</label>
+                        </div>
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="capacity" value="other" inputId="other" formControlName="capacity">
+                          </p-radioButton>
+                          <label for="capacity">Other</label>
+                        </div>
+                      </div>
+                      <div *ngIf="newWorkerForm.get('contractData').get('capacity').value === 'other'">
+                        <div class="p-field">
+                          <label for="capacityOther">Capacity</label>
+                          <input id="capacityOther" type="text" pInputText class="p-inputtext-sm"
+                            formControlName="capacityOther">
+                        </div>
+                      </div>
+                    </p-fieldset>
+                  </div>
+                  <div *ngIf="newWorkerForm.get('contractData').get('contractType').value === 'employment'">
+                    <p-fieldset legend="Salary">
+                      <div class="p-formgroup-inline">
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="salary" value="fixSalary" inputId="fixSalary" formControlName="salary">
+                          </p-radioButton>
+                          <label for="fixSalary">Fix</label>
+                        </div>
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="salary" value="graduatedFix" inputId="graduatedFix"
+                            formControlName="salary">
+                          </p-radioButton>
+                          <label for="graduatedFix">Graduated Fix</label>
+                        </div>
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="salary" value="fixVariable" inputId="fixVariable"
+                            formControlName="salary">
+                          </p-radioButton>
+                          <label for="fixVariable">Fix + Variable part</label>
+                        </div>
+                      </div>
+                      <div *ngIf="newWorkerForm.get('contractData').get('salary').value === 'fixSalary'">
+                        <div class="p-field">
+                          <label for="fixSalaryAmount">Salary</label>
+                          <input id="fixSalaryAmount" type="text" pInputText class="p-inputtext-sm"
+                            formControlName="fixSalaryAmount">
+                        </div>
+                      </div>
+                      <!-- <div *ngIf="newWorkerForm.get('contractData').get('salary').value === 'graduatedFix'"> -->
+                      <!-- <div class="p-field">
+                          <label for="graduatedFixSalary">Salary</label>
+                          <input id="graduatedFixSalary" type="text" pInputText class="p-inputtext-sm"
+                            formControlName="graduatedFixSalary">
+                        </div> -->
+                      <div *ngIf="newWorkerForm.get('contractData').get('salary').value === 'graduatedFix'">
+                        <div formArrayName="salaries"
+                          *ngFor="let item of newWorkerForm.get('contractData').get('salaries')['controls']; let i = index;">
+                          <!-- <div *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
+                            <input type="text" class="form-control" formControlName="name">
+                          </div> -->
+                          <div [formGroupName]="i">
+                            <div class="p-field">
+                              <label for="salaryChange">Salary</label>
+                              <input id="salaryChange" type="text" pInputText class="p-inputtext-sm"
+                                formControlName="salaryChange">
+                            </div>
+                            <div class="p-field">
+                              <label for="salaryChangeDate">Salary change from</label>
+                              <p-calendar inputId="salaryChangeDate" class="p-inputtext-sm"
+                                formControlName="salaryChangeDate" [monthNavigator]="true" [yearNavigator]="true"
+                                yearRange="2000:2030" inputId="navigators">
+                              </p-calendar>
+                            </div>
+
+                            <button type="button" (click)="deleteSalary(i)">Remove</button>
+
+                          </div>
+
+                        </div>
+                        <button type="button" (click)="addSalary()">Add Salary</button>
+                      </div>
+                      <!-- <div class="p-field">
+                          <label for="salaryChangeFrom">Salary change from</label>
+                          <p-calendar inputId="salaryChangeFrom" class="p-inputtext-sm"
+                            formControlName="salaryChangeFrom" [monthNavigator]="true" [yearNavigator]="true"
+                            yearRange="2000:2030" inputId="navigators">
+                          </p-calendar>
+                        </div>
+                        <div class="p-field">
+                          <label for="graduatedSalaryChange">Salary Change</label>
+                          <input id="graduatedSalaryChange" type="text" pInputText class="p-inputtext-sm"
+                            formControlName="graduatedSalaryChange">
+                        </div>-->
+                      <!-- </div> -->
+                      <div *ngIf="newWorkerForm.get('contractData').get('salary').value === 'fixVariable'">
+                        <div class="p-field">
+                          <label for="fixVariableSalary">Salary</label>
+                          <input id="fixVariableSalary" type="text" pInputText class="p-inputtext-sm"
+                            formControlName="fixVariableSalary">
+                        </div>
+                        <div class="p-field">
+                          <label for="variablePart">Variable Part</label>
+                          <input id="variablePart" type="text" pInputText class="p-inputtext-sm"
+                            formControlName="variablePart">
+                        </div>
+                      </div>
+                    </p-fieldset>
+                  </div>
+                  <div
+                    *ngIf="newWorkerForm.get('contractData').get('contractType').value === 'workAgreement' || newWorkerForm.get('contractData').get('contractType').value === 'activityAgreement'">
+                    <p-fieldset legend="Salary">
                       <div class="p-field">
-                        <label for="fixSalaryAmount">Salary</label>
-                        <input id="fixSalaryAmount" type="text" pInputText class="p-inputtext-sm"
-                          formControlName="fixSalaryAmount">
+                        <label for="salaryPerHour">Per Hour</label>
+                        <input id="salaryPerHour" type="text" pInputText class="p-inputtext-sm"
+                          formControlName="salaryPerHour">
+                      </div>
+                    </p-fieldset>
+                  </div>
+                  <p-fieldset legend="Contract Limitation">
+                    <div class="p-formgroup-inline">
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="limitation" value="unlimited" inputId="unlimited"
+                          formControlName="limitation">
+                        </p-radioButton>
+                        <label for="unlimited">Unlimited</label>
+                      </div>
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="limitation" value="oneYear" inputId="oneYear" formControlName="limitation">
+                        </p-radioButton>
+                        <label for="oneYear">1-year limitation</label>
+                      </div>
+                      <div class="p-field-checkbox">
+                        <p-radioButton name="limitation" value="otherLimitation" inputId="otherLimitation"
+                          formControlName="limitation">
+                        </p-radioButton>
+                        <label for="otherLimitation">Other</label>
                       </div>
                     </div>
-                    <div *ngIf="newWorkerForm.controls.salary.value === 'graduatedFix'">
+                    <div *ngIf="newWorkerForm.get('contractData').get('limitation').value === 'otherLimitation'">
                       <div class="p-field">
-                        <label for="graduatedFixSalary">Salary</label>
-                        <input id="graduatedFixSalary" type="text" pInputText class="p-inputtext-sm"
-                          formControlName="graduatedFixSalary">
-                      </div>
-                      <div class="p-field">
-                        <label for="salaryChangeFrom">Salary change from</label>
-                        <p-calendar inputId="salaryChangeFrom" class="p-inputtext-sm" formControlName="salaryChangeFrom"
+                        <label for="dateLimitation">Contract Limitation</label>
+                        <p-calendar inputId="dateLimitation" class="p-inputtext-sm" formControlName="dateLimitation"
                           [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
                         </p-calendar>
                       </div>
-                      <div class="p-field">
-                        <label for="graduatedSalaryChange">Salary Change</label>
-                        <input id="graduatedSalaryChange" type="text" pInputText class="p-inputtext-sm"
-                          formControlName="graduatedSalaryChange">
-                      </div>
-                    </div>
-                    <div *ngIf="newWorkerForm.controls.salary.value === 'fixVariable'">
-                      <div class="p-field">
-                        <label for="fixVariableSalary">Salary</label>
-                        <input id="fixVariableSalary" type="text" pInputText class="p-inputtext-sm"
-                          formControlName="fixVariableSalary">
-                      </div>
-                      <div class="p-field">
-                        <label for="variablePart">Variable Part</label>
-                        <input id="variablePart" type="text" pInputText class="p-inputtext-sm"
-                          formControlName="variablePart">
-                      </div>
                     </div>
                   </p-fieldset>
-                </div>
-                <div
-                  *ngIf="newWorkerForm.controls.contractType.value === 'workAgreement' || newWorkerForm.controls.contractType.value === 'activityAgreement'">
-                  <p-fieldset legend="Salary">
+                  <p-fieldset legend="Role">
                     <div class="p-field">
-                      <label for="salaryPerHour">Per Hour</label>
-                      <input id="salaryPerHour" type="text" pInputText class="p-inputtext-sm"
-                        formControlName="salaryPerHour">
+                      <label for="position">Position</label>
+                      <input id="position" type="text" pInputText class="p-inputtext-sm" formControlName="position">
+                    </div>
+                    <div class="p-field">
+                      <label for="team">Team</label>
+                      <input id="team" type="text" pInputText class="p-inputtext-sm" formControlName="team">
+                    </div>
+                    <div class="p-field">
+                      <label for="seat">Seat</label>
+                      <input id="seat" type="text" pInputText class="p-inputtext-sm" formControlName="seat">
+                    </div>
+                    <div class="p-field">
+                      <label for="manager">Team Leader/Manager</label>
+                      <input id="manager" type="text" pInputText class="p-inputtext-sm" formControlName="manager">
                     </div>
                   </p-fieldset>
-                </div>
-
-                <p-fieldset legend="Contract Limitation">
-                  <div class="p-formgroup-inline">
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="limitation" value="unlimited" inputId="unlimited"
-                        formControlName="limitation">
-                      </p-radioButton>
-                      <label for="unlimited">Unlimited</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="limitation" value="oneYear" inputId="oneYear" formControlName="limitation">
-                      </p-radioButton>
-                      <label for="oneYear">1-year limitation</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="limitation" value="otherLimitation" inputId="otherLimitation"
-                        formControlName="limitation">
-                      </p-radioButton>
-                      <label for="otherLimitation">Other</label>
-                    </div>
-                  </div>
-                  <div *ngIf="newWorkerForm.controls.limitation.value === 'otherLimitation'">
+                  <p-fieldset legend="Accounting">
                     <div class="p-field">
-                      <label for="dateLimitation">Contract Limitation</label>
-                      <p-calendar inputId="dateLimitation" class="p-inputtext-sm" formControlName="dateLimitation"
-                        [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
-                      </p-calendar>
+                      <label for="costCenter">Cost Center</label>
+                      <p-dropdown id="costCenter" [options]="banks" placeholder="Select a Cost Center"
+                        optionLabel="name" [showClear]="true" [filter]="true" filterBy="name"
+                        formControlName="costCenter">
+                      </p-dropdown>
                     </div>
-                  </div>
-                </p-fieldset>
-                <p-fieldset legend="Role">
-                  <div class="p-field">
-                    <label for="position">Position</label>
-                    <input id="position" type="text" pInputText class="p-inputtext-sm" formControlName="position">
-                  </div>
-                  <div class="p-field">
-                    <label for="team">Team</label>
-                    <input id="team" type="text" pInputText class="p-inputtext-sm" formControlName="team">
-                  </div>
-                  <div class="p-field">
-                    <label for="seat">Seat</label>
-                    <input id="seat" type="text" pInputText class="p-inputtext-sm" formControlName="seat">
-                  </div>
-                  <div class="p-field">
-                    <label for="manager">Team Leader/Manager</label>
-                    <input id="manager" type="text" pInputText class="p-inputtext-sm" formControlName="manager">
-                  </div>
-                </p-fieldset>
-                <p-fieldset legend="Accounting">
-                  <div class="p-field">
-                    <label for="costCenter">Cost Center</label>
-                    <p-dropdown id="costCenter" [options]="banks" placeholder="Select a Cost Center" optionLabel="name"
-                      [showClear]="true" [filter]="true" filterBy="name" formControlName="costCenter">
-                    </p-dropdown>
-                  </div>
-                  <h4>Active Trading Licence This Year</h4>
-                  <div class="p-formgroup-inline">
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="activeTradingLicence" value="licenceYes" inputId="licenceYes"
-                        formControlName="activeTradingLicence">
-                      </p-radioButton>
-                      <label for="licenceYes">Yes</label>
-                    </div>
-                    <div class="p-field-checkbox">
-                      <p-radioButton name="activeTradingLicence" value="licenceNo" inputId="licenceNo"
-                        formControlName="activeTradingLicence">
-                      </p-radioButton>
-                      <label for="licenceNo">No</label>
-                    </div>
-                  </div>
-                  <div *ngIf="newWorkerForm.controls.limitation.value === 'otherLimitation'">
-                    <div class="p-field">
-                      <label for="exEmployer">Last Day by Ex-Employer</label>
-                      <p-calendar inputId="exEmployer" class="p-inputtext-sm" formControlName="exEmployer"
-                        [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
-                      </p-calendar>
-                    </div>
-                  </div>
-                </p-fieldset>
-                <div
-                  *ngIf="newWorkerForm.controls.contractType.value === 'workAgreement' || newWorkerForm.controls.contractType.value === 'activityAgreement'">
-                  <p-fieldset legend="Student">
+                    <h4>Active Trading Licence This Year</h4>
                     <div class="p-formgroup-inline">
                       <div class="p-field-checkbox">
-                        <p-radioButton name="student" value="studentYes" inputId="studentYes" formControlName="student">
+                        <p-radioButton name="activeTradingLicence" value="licenceYes" inputId="licenceYes"
+                          formControlName="activeTradingLicence">
                         </p-radioButton>
-                        <label for="studentYes">Yes</label>
+                        <label for="licenceYes">Yes</label>
                       </div>
                       <div class="p-field-checkbox">
-                        <p-radioButton name="student" value="studentNo" inputId="studentNo" formControlName="student">
+                        <p-radioButton name="activeTradingLicence" value="licenceNo" inputId="licenceNo"
+                          formControlName="activeTradingLicence">
                         </p-radioButton>
-                        <label for="studentNo">No</label>
+                        <label for="licenceNo">No</label>
+                      </div>
+                    </div>
+                    <div *ngIf="newWorkerForm.get('contractData').get('limitation').value === 'otherLimitation'">
+                      <div class="p-field">
+                        <label for="exEmployer">Last Day by Ex-Employer</label>
+                        <p-calendar inputId="exEmployer" class="p-inputtext-sm" formControlName="exEmployer"
+                          [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" inputId="navigators">
+                        </p-calendar>
                       </div>
                     </div>
                   </p-fieldset>
+                  <div
+                    *ngIf="newWorkerForm.get('contractData').get('contractType').value === 'workAgreement' ||newWorkerForm.get('contractData').get('contractType').value === 'activityAgreement'">
+                    <p-fieldset legend="Student">
+                      <div class="p-formgroup-inline">
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="student" value="studentYes" inputId="studentYes"
+                            formControlName="student">
+                          </p-radioButton>
+                          <label for="studentYes">Yes</label>
+                        </div>
+                        <div class="p-field-checkbox">
+                          <p-radioButton name="student" value="studentNo" inputId="studentNo" formControlName="student">
+                          </p-radioButton>
+                          <label for="studentNo">No</label>
+                        </div>
+                      </div>
+                    </p-fieldset>
+                  </div>
                 </div>
-
-
-
               </div>
             </ng-template>
           </p-accordionTab>

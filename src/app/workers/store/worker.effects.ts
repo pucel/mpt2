@@ -6,6 +6,7 @@ import * as WorkerActions from './worker.actions';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Worker } from '../worker.model';
+import * as DocumentActions from '../../documents/store/document.actions';
 
 @Injectable()
 export class WorkerEffects {
@@ -39,25 +40,30 @@ export class WorkerEffects {
     })
   );
 
-
-
-
-
-
-
-  @Effect({ dispatch: false })
+  @Effect()
   createDoc = this.actions$.pipe(
     ofType(WorkerActions.CREATE_DOC),
     switchMap((actionData) => {
-      return this.http.put<Blob>(
-        'http://localhost:5000/createDoc', actionData, { responseType: 'blob' as 'json' }
+      return this.http.put<string>(
+        'http://localhost:5000/createDoc', actionData
       );
     }),
-    map(downloadedDoc => {
-      const blob = new Blob([downloadedDoc], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
+    map(fileName => {
+      console.log('fileName');
+      console.log(fileName);
+      return new WorkerActions.DisplayDocument(fileName);
     })
+
+
+
+
+    // map(downloadedDoc => {
+    //   const blob = new Blob([downloadedDoc], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    //   const url = window.URL.createObjectURL(blob);
+
+    //   return new WorkerActions.DisplayDocument(url);
+    //   window.open(url);
+    // })
   )
 
   @Effect()
@@ -72,9 +78,6 @@ export class WorkerEffects {
       return new WorkerActions.SetWorkers(workers);
     })
   );
-
-
-
 
   @Effect({ dispatch: false })
   getWorker = this.actions$.pipe(ofType(WorkerActions.GET_WORKER),
@@ -97,6 +100,22 @@ export class WorkerEffects {
     })
   );
 
-
-
+  @Effect()
+  displayDoc = this.actions$.pipe(
+    ofType(WorkerActions.DISPLAY_DOCUMENT),
+    switchMap((actionData) => {
+      console.log('actionData');
+      console.log(actionData);
+      return this.http.put<Blob>(
+        'http://localhost:5000/getdocument', actionData, { responseType: 'blob' as 'json' }
+      );
+    }),
+    map(downloadedDoc => {
+      const blob = new Blob([downloadedDoc], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const url = window.URL.createObjectURL(blob);
+      console.log(url);
+      return new DocumentActions.DisplayDocument(url);
+      //window.open(url);
+    })
+  )
 }

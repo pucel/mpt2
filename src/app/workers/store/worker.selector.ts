@@ -49,6 +49,9 @@ const workerDetail = (state: State): boolean =>
 const showCreateWorker = (state: State): boolean =>
   state.displayLeftPanel === DisplayLeft.CreateWorker;
 
+const showDocumentDetail = (state: State): boolean =>
+  state.displayRightPanel === DisplayRight.Document;
+
 
 export const selectWorkerFeatureState: MemoizedSelector<
   object,
@@ -155,6 +158,16 @@ export const amountWorkers: MemoizedSelector<
   selectWorkerFeatureState,
   amountOfWorkers
 );
+
+export const showDocument: MemoizedSelector<
+  object,
+  boolean
+> = createSelector(
+  selectWorkerFeatureState,
+  showDocumentDetail
+);
+
+
 
 
 

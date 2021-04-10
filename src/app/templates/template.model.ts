@@ -3,5 +3,7 @@ export interface Template {
   name: string;
   version: number;
   description: string;
+  filenameSource: string;
+  filenamePDF: string;
 }
 

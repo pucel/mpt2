@@ -1,14 +1,11 @@
-export class CreatedDocument {
-  public _id?: string;
-  public workerId: string;
-  public templateId: string;
-  public filename: string;
-
-
-  constructor(id: string, workerId: string, templateId: string, filename: string) {
-    this._id = id;
-    this.workerId = workerId;
-    this.templateId = templateId;
-    this.filename = filename;
-  }
+export interface CreatedDocument {
+  _id?: string;
+  workerId: string;
+  templateId: string;
+  filename: string;
+  name: string;
+  version: number;
+  description: string;
+  fileDoc: string;
+  filePdf: string;
 }

@@ -21,6 +21,7 @@ export enum DisplayRight {
   CreateDoc = 'CreateDoc',
   Detail = 'Detail',
   Workers = 'Workers',
+  Document = 'Document',
   Nothing = 'Nothing'
 }
 
@@ -56,7 +57,9 @@ export function workerReducer(
       };
     case WorkerActions.ADD_WORKER:
       return {
-        ...state
+        ...state,
+        displayLeftPanel: DisplayLeft.Workers,
+        displayRightPanel: DisplayRight.Nothing
       };
     case WorkerActions.UPDATE_WORKER:
       return {
@@ -117,6 +120,12 @@ export function workerReducer(
         ...state,
         displayLeftPanel: DisplayLeft.CreateWorker,
         displayRightPanel: DisplayRight.Nothing
+      };
+    case WorkerActions.DISPLAY_DOCUMENT:
+      return {
+        ...state,
+        displayLeftPanel: DisplayLeft.Detail,
+        displayRightPanel: DisplayRight.Document
       };
     default:
       return state;

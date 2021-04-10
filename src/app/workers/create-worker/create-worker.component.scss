@@ -1,22 +1,46 @@
-.form {
-  padding-left: 3rem;
-  padding-right: 3rem;
-  padding-top: 1rem;
-}
+// .form {
+//   padding-left: 3rem;
+//   padding-right: 3rem;
+//   padding-top: 1rem;
+// }
 
-label,
-H4 {
-  color: black;
-}
+// label,
+// H4 {
+//   color: black;
+// }
 
-.p-fieldset .p-fieldset-legend {
-  border: none;
-  background-color: white;
-  font-weight: 700;
-}
+// .p-fieldset .p-fieldset-legend {
+//   border: none;
+//   background-color: white;
+//   font-weight: 700;
+// }
 
-.p-accordion {
-  height: 275px;
-  display: block;
-  overflow: scroll;
+// .p-accordion {
+//   height: 275px;
+//   display: block;
+//   overflow: scroll;
+// }
+
+.p-scrollpanel {
+  p {
+    padding: 0.5rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &.custombar1 {
+    .p-scrollpanel-wrapper {
+      border-right: 9px solid var(--layer-1);
+    }
+
+    .p-scrollpanel-bar {
+      background-color: var(--primary-color);
+      opacity: 1;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #007ad9;
+      }
+    }
+  }
 }

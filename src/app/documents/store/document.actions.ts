@@ -5,6 +5,7 @@ import { Worker } from '../../workers/worker.model';
 export const FETCH_DOCUMENTS = '[Documents] Fetch Documents';
 export const ADD_DOCUMENT = '[Documents] Add Document';
 export const SET_DOCUMENTS = '[Documents] Set Documents';
+export const DISPLAY_DOCUMENT = '[Documents] Display Documents';
 
 export class FetchDocuments implements Action {
   readonly type = FETCH_DOCUMENTS;
@@ -24,12 +25,18 @@ export class AddDocument implements Action {
   constructor(public payload: CreatedDocument) { }
 }
 
+export class DisplayDocument implements Action {
+  readonly type = DISPLAY_DOCUMENT;
+
+  constructor(public payload: string) { }
+}
 
 
 
 export type DocumentActions =
   | FetchDocuments
   | AddDocument
-  | SetDocuments;
+  | SetDocuments
+  | DisplayDocument;
 
 
